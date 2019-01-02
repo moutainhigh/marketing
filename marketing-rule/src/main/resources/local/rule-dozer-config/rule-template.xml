@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<mapping>
+		<class-a>com.oristartech.rule.core.template.model.RuleElementTemplate</class-a>
+		<class-b>com.oristartech.rule.vos.template.vo.RuleElementTemplateVO</class-b>
+	</mapping>
+	
+	<mapping>
+        <class-a>com.oristartech.rule.core.template.model.FieldGroup</class-a>
+        <class-b>com.oristartech.rule.vos.template.vo.FieldGroupVO</class-b>
+        <field >
+            <a>groupElementType.id</a>
+            <b>groupElementTypeId</b>
+        </field>
+        <field type="one-way">
+            <a>groupElementType.name</a>
+            <b>groupElementTypeName</b>
+        </field>
+        <field type="one-way">
+            <a>groupElementType.cnName</a>
+            <b>groupElementTypeCnName</b>
+        </field>
+    </mapping>
+    
+    <mapping>
+        <class-a>com.oristartech.rule.core.template.model.GroupElementType</class-a>
+        <class-b>com.oristartech.rule.vos.template.vo.GroupElementTypeVO</class-b>
+        <field-exclude>
+            <a>fieldGroups</a>
+            <b>fieldGroups</b>
+        </field-exclude>
+        <field-exclude>
+            <a>funcGroups</a>
+            <b>funcGroups</b>
+        </field-exclude>
+    </mapping>
+    
+    <mapping>
+        <class-a>com.oristartech.rule.core.template.model.FunctionGroup</class-a>
+        <class-b>com.oristartech.rule.vos.template.vo.FunctionGroupVO</class-b>
+        <field>
+            <a>groupElementType.id</a>
+            <b>groupElementTypeId</b>
+        </field>
+        <field >
+            <a>groupElementType.name</a>
+            <b>groupElementTypeName</b>
+        </field>
+        <field >
+            <a>groupElementType.cnName</a>
+            <b>groupElementTypeCnName</b>
+        </field>
+    </mapping>
+    
+    <mapping>
+        <class-a>com.oristartech.rule.core.template.model.FieldAndOperatorRelation</class-a>
+        <class-b>com.oristartech.rule.vos.template.vo.FieldAndOperatorRelationVO</class-b>
+        <field >
+            <a>modelField.id</a>
+            <b>modelFieldId</b>
+        </field>
+        <field >
+            <a>fieldGroup.id</a>
+            <b>fieldGroupId</b>
+        </field>
+    </mapping>
+    
+    <mapping>
+        <class-a>com.oristartech.rule.core.template.model.FieldGroupAndFieldRelation</class-a>
+        <class-b>com.oristartech.rule.vos.template.vo.FieldGroupAndFieldRelationVO</class-b>
+         <field >
+            <a>fieldGroup.id</a>
+            <b>fieldGroupId</b>
+        </field>
+    </mapping>
+    
+    <mapping>
+        <class-a>com.oristartech.rule.core.template.model.FunctionGroupAndFunctionRelation</class-a>
+        <class-b>com.oristartech.rule.vos.template.vo.FunctionGroupAndFunctionRelationVO</class-b>
+         <field >
+            <a>functionGroup.id</a>
+            <b>functionGroupId</b>
+        </field>
+    </mapping>
+</mappings>

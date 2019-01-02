@@ -1,0 +1,19 @@
+<ehcache  name="marketing_cache" updateCheck="false" >
+
+	<diskStore path="java.io.tmpdir" />
+
+	<defaultCache maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="3600" timeToLiveSeconds="3600" overflowToDisk="true" />
+
+    <!-- rule base info cache -->
+	<cache name="com-oristartech-rule-basic-model-region" maxElementsInMemory="10000"
+		maxElementsOnDisk="10000" eternal="false" overflowToDisk="true"
+		diskSpoolBufferSizeMB="20" timeToIdleSeconds="3600" timeToLiveSeconds="3600"
+		memoryStoreEvictionPolicy="LFU" />
+		
+	<!-- rule info cache -->	
+	<cache name="com-oristartech-rule-core-model-region" maxElementsInMemory="10000"
+        maxElementsOnDisk="10000" eternal="false" overflowToDisk="true"
+        diskSpoolBufferSizeMB="20" timeToIdleSeconds="900" timeToLiveSeconds="900"
+        memoryStoreEvictionPolicy="LFU" />
+</ehcache>

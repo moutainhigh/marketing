@@ -1,0 +1,4 @@
+# AutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.oristartech.marketing.components.config.properties.DefaultProperties,\
+com.oristartech.marketing.components.config.DubboAutoConfiguration

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.oristartech.marketing</groupId>
+  <artifactId>marketing-trunk</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+    <module>marketing-service</module>
+    <module>marketing-core</module>
+    <module>marketing-drools</module>
+    <module>marketing-rule</module>
+    <module>marketing-api</module>
+    <module>marketing-web</module>
+    <module>marketing-components</module>
+    <module>marketing-biz</module>
+  </modules>
+  
+  <parent>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>2.0.1.RELEASE</version>
+  </parent>
+  <properties>
+  	<marketing.version>0.0.1-SNAPSHOT</marketing.version>
+	<drools.version>7.15.0.Final</drools.version>
+  </properties>
+  
+  <dependencies>
+  
+   </dependencies>
+  
+  <build>
+       <finalName>${project.artifactId}</finalName>
+       <resources>
+
+
+           <!-- 这里如果需要替换这个目录打开 -->
+           <!--<resource>-->
+           <!--<directory>${project.basedir}/src/main/java</directory>-->
+           <!--<includes>-->
+           <!--<include>**/*.properties</include>-->
+           <!--<include>**/*.xml</include>-->
+
+
+
+           <!--<include>**/*.vm</include>-->
+           <!--</includes>-->
+           <!--&lt;!&ndash; 是否替换资源中的属性 &ndash;&gt;-->
+           <!--<filtering>false</filtering>-->
+           <!--</resource>-->
+           <resource>
+               <directory>${project.basedir}/src/main/resources</directory>
+               <!-- 这里如果部分替换或者需要排除打开 -->
+               <!-- <includes>
+                   <include>**/*.properties</include>
+                   <include>**/*.xml</include>
+               </includes> -->
+               <!-- 资源根目录排除各环境的配置，使用单独的资源目录来指定 -->
+               <excludes>
+                   <exclude>dev/*</exclude>
+                   <exclude>test/*</exclude>
+                   <exclude>local/*</exclude>
+               </excludes>
+               <filtering>true</filtering>
+           </resource>
+           <resource>
+               <directory>src/main/resources/${profiles.active}</directory>
+           </resource>
+       </resources>
+       <plugins>
+
+           <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-compiler-plugin</artifactId>
+               <version>3.1</version>
+               <configuration>
+                   <source>${java.version}</source>
+                   <target>${java.version}</target>
+               </configuration>
+           </plugin>
+           <plugin>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-maven-plugin</artifactId>
+               <version>2.0.1.RELEASE</version>
+           </plugin>
+           <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-jar-plugin</artifactId>
+               <version>2.3</version>
+               <executions>
+                   <execution>
+                       <id>passport-server-jar</id>
+                       <phase>package</phase>
+                       <goals>
+                           <goal>jar</goal>
+                       </goals>
+                       <configuration>
+                           <classifier>facade</classifier>
+                           <jarName>${project.artifactId}</jarName>
+                           <includes>
+                               <include>**/facade/*</include>
+                               <include>**/dto/**</include>
+                               <include>**/dto/*</include>
+                           </includes>
+                       </configuration>
+                   </execution>
+               </executions>
+           </plugin>
+       </plugins>
+   </build>
+   <profiles>
+       <profile>
+           <!-- 本地开发环境 -->
+           <id>dev</id>
+           <properties>
+               <profiles.active>dev</profiles.active>
+           </properties>
+       </profile>
+       <profile>
+           <!-- 本地开发环境 -->
+           <id>local</id>
+           <properties>
+               <profiles.active>local</profiles.active>
+           </properties>
+           <activation>
+               <!-- 设置默认激活这个配置 -->
+               <activeByDefault>true</activeByDefault>
+           </activation>
+       </profile>
+       <profile>
+           <!-- 发布环境 -->
+           <id>release</id>
+           <properties>
+               <profiles.active>release</profiles.active>
+           </properties>
+       </profile>
+       <profile>
+           <!-- 压力环境 -->
+           <id>stress</id>
+           <properties>
+               <profiles.active>stress</profiles.active>
+           </properties>
+       </profile>
+       <profile>
+           <!-- 测试环境 -->
+           <id>test</id>
+           <properties>
+               <profiles.active>test</profiles.active>
+           </properties>
+       </profile>
+   </profiles>
+
+
+   <repositories>
+       <repository>
+           <id>maven-snapshots</id>
+           <url>http://nexus.tthappy.cn/repository/maven-snapshots/</url>
+           <snapshots>
+               <enabled>true</enabled>
+               <updatePolicy>always</updatePolicy>
+               <checksumPolicy>warn</checksumPolicy>
+           </snapshots>
+           <releases>
+               <enabled>false</enabled>
+           </releases>
+       </repository>
+
+       <repository>
+           <id>maven-releases</id>
+           <url>http://nexus.tthappy.cn/repository/maven-releases/</url>
+           <snapshots>
+               <enabled>false</enabled>
+           </snapshots>
+           <releases>
+               <enabled>true</enabled>
+           </releases>
+       </repository>
+   </repositories>
+
+
+   <distributionManagement>
+       <repository>
+           <id>maven-releases</id>
+           <url>http://nexus.tthappy.cn/repository/maven-releases/</url>
+       </repository>
+       <snapshotRepository>
+           <id>maven-snapshots</id>
+           <url>http://nexus.tthappy.cn/repository/maven-snapshots/</url>
+       </snapshotRepository>
+   </distributionManagement>
+   
+</project>

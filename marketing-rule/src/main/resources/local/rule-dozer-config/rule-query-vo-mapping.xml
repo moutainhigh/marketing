@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<mapping>
+		<class-a>java.util.Map</class-a>
+		<class-b>com.oristartech.rule.vos.core.vo.RuleSectionVO</class-b>
+	</mapping>
+	
+	<mapping>
+		<class-a>java.util.Map</class-a>
+		<class-b>com.oristartech.rule.vos.core.vo.RuleGroupVO</class-b>
+		<field>
+			<a key="tenantId">this</a>
+			<b>tenantId</b>
+		</field>
+		<field>
+            <a key="id">this</a>
+            <b>id</b>
+        </field>
+        <field>
+            <a key="ruleSectionVO_id">this</a>
+            <b>ruleSectionVO.id</b>
+        </field>
+        <field>
+			<a key="ruleSectionVO_isSerial">this</a>
+			<b>ruleSectionVO.isSerial</b>
+		</field>
+		<field>
+            <a key="ruleSectionVO_ruleId">this</a>
+            <b>ruleSectionVO.ruleId</b>
+        </field>
+        <field>
+            <a key="ruleSectionVO_ruleGroupId">this</a>
+            <b>ruleSectionVO.ruleGroupId</b>
+        </field>
+        <field>
+			<a key="ruleSectionVO_seqNum">this</a>
+			<b>ruleSectionVO.seqNum</b>
+		</field>
+		<field>
+            <a key="createDate">this</a>
+            <b>createDate</b>
+        </field>
+        <field custom-converter="com.oristartech.config.converter.EnumDozerConverter">
+            <a key="executeMode">this</a>
+            <b>executeMode</b>
+        </field>
+        <field>
+			<a key="modifyDate">this</a>
+			<b>modifyDate</b>
+		</field>
+		<field>
+            <a key="name">this</a>
+            <b>name</b>
+        </field>
+        <field>
+            <a key="priority">this</a>
+            <b>priority</b>
+        </field>
+        <field>
+			<a key="bizOrderCode">this</a>
+			<b>bizOrderCode</b>
+		</field>
+		<field>
+            <a key="remark">this</a>
+            <b>remark</b>
+        </field>
+        <field>
+            <a key="ruleType">this</a>
+            <b>ruleType</b>
+        </field>
+        <field custom-converter="com.oristartech.config.converter.EnumDozerConverter">
+            <a key="status">this</a>
+            <b>status</b>
+        </field>
+        <field>
+			<a key="templateId">this</a>
+			<b>templateId</b>
+		</field>
+		<field custom-converter="com.oristartech.config.converter.DateDozerConverter">
+            <a key="validDateEnd">this</a>
+            <b>validDateEnd</b>
+        </field>
+        <field custom-converter="com.oristartech.config.converter.DateDozerConverter">
+            <a key="validDateStart">this</a>
+            <b>validDateStart</b>
+        </field>
+	</mapping>
+
+	<mapping >
+		<class-a>java.util.Map</class-a>
+		<class-b>com.oristartech.rule.vos.core.vo.RuleActionVO</class-b>
+		<field>
+			<a key="action_Id">this</a>
+			<b>id</b>
+		</field>
+		<field>
+            <a key="action_isAnd">this</a>
+            <b>isAnd</b>
+        </field>
+        <field>
+            <a key="action_seqNum">this</a>
+            <b>seqNum</b>
+        </field>
+	</mapping>
+
+    <mapping >
+        <class-a>java.util.Map</class-a>
+        <class-b>com.oristartech.rule.vos.core.vo.RuleConditionVO</class-b>
+        <field>
+            <a key="con_id">this</a>
+            <b>id</b>
+        </field>
+        <field>
+            <a key="con_seqNum">this</a>
+            <b>seqNum</b>
+        </field>
+        <field>
+            <a key="con_modelCategoryId">this</a>
+            <b>modelCategoryId</b>
+        </field>
+        <field>
+            <a key="con_modelCategoryName">this</a>
+            <b>modelCategoryName</b>
+        </field>
+    </mapping>
+    
+     <mapping >
+        <class-a>java.util.Map</class-a>
+        <class-b>com.oristartech.rule.vos.core.vo.RuleConditionElementVO</class-b>
+        <field>
+            <a key="conEle_id">this</a>
+            <b>id</b>
+        </field>
+        <field>
+            <a key="conEle_isAnd">this</a>
+            <b>isAnd</b>
+        </field>
+        <field>
+            <a key="conEle_seqNum">this</a>
+            <b>seqNum</b>
+        </field>
+        <field>
+            <a key="conEle_leftBracketNum">this</a>
+            <b>leftBracketNum</b>
+        </field>
+        <field>
+            <a key="conEle_rightBracketNum">this</a>
+            <b>rightBracketNum</b>
+        </field>
+        <field>
+            <a key="conEle_operand">this</a>
+            <b>operand</b>
+        </field>
+        <field>
+            <a key="conEle_operandLabel">this</a>
+            <b>operandLabel</b>
+        </field>
+    </mapping>
+
+</mappings>

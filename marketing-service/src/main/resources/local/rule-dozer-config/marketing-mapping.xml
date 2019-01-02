@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+
+	<mapping>
+		<class-a>com.oristartech.marketing.model.MarketingActivity</class-a>
+		<class-b>com.oristartech.marketing.vo.MarketingActivityVO</class-b>
+		<field custom-converter="com.oristartech.config.converter.EnumDozerConverter">
+			<a>activityState</a>
+			<b>activityState</b>
+		</field>
+		<field>
+			<a>approvalman</a>
+			<b>approvalmanId</b>
+		</field>
+		<field>
+			<a>creater</a>
+			<b>createrId</b>
+		</field>
+		<field custom-converter="com.oristartech.config.converter.DateDozerConverter">
+            <a>validDateEnd</a>
+            <b>validDateEnd</b>
+        </field>
+        <field custom-converter="com.oristartech.config.converter.DateDozerConverter">
+            <a>validDateStart</a>
+            <b>validDateStart</b>
+        </field>
+	</mapping>
+	
+</mappings>

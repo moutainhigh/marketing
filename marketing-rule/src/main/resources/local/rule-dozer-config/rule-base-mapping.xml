@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+ 
+    <mapping>
+        <class-a>com.oristartech.rule.core.base.model.ModelCategory</class-a>
+        <class-b>com.oristartech.rule.vos.base.vo.ModelCategoryVO</class-b>
+    </mapping>
+    
+    <mapping>
+        <class-a>com.oristartech.rule.core.base.model.ModelFieldDataSource</class-a>
+        <class-b>com.oristartech.rule.vos.base.vo.ModelFieldDataSourceVO</class-b>
+        <field type="one-way">
+            <a>modelField.id</a>
+            <b>modelFieldId</b>
+        </field>        
+    </mapping>
+    
+    <mapping>
+        <class-a>com.oristartech.rule.core.base.model.ModelField</class-a>
+        <class-b>com.oristartech.rule.vos.base.vo.ModelFieldVO</class-b>
+        <field type="one-way">
+            <a>modelCategory.id</a>
+            <b>modelCategoryId</b>
+        </field>
+        <field type="one-way">
+            <a>modelCategory.name</a>
+            <b>modelCategoryName</b>
+        </field>
+        <field type="one-way">
+            <a>modelCategory.parentName</a>
+            <b>modelCategoryParentName</b>
+        </field>
+        <field type="one-way">
+            <a>modelCategory.isMultiFact</a>
+            <b>isMultiFactCategory</b>
+        </field>
+        <field type="one-way">
+            <a>businessSystem.id</a>
+            <b>businessSystemId</b>
+        </field>
+        <field type="one-way">
+            <a>businessSystem.name</a>
+            <b>businessSystemName</b>
+        </field>
+    </mapping>
+    
+    <mapping>
+        <class-a>com.oristartech.rule.core.base.model.Operator</class-a>
+        <class-b>com.oristartech.rule.vos.base.vo.OperatorVO</class-b>
+    </mapping>
+    
+     <mapping>
+        <class-a>com.oristartech.rule.core.base.model.ActionFunction</class-a>
+        <class-b>com.oristartech.rule.vos.base.vo.ActionFunctionVO</class-b>
+        <field type="one-way">
+            <a>fnCategory.id</a>
+            <b>fnCategoryId</b>
+        </field>
+         <field type="one-way">
+            <a>fnCategory.name</a>
+            <b>fnCategoryName</b>
+        </field>
+        <field>
+          <a>actionFunctionParameters</a>
+          <b>actionFunctionParameters</b>
+          <a-hint>com.oristartech.rule.core.base.model.ActionFunctionParameter, com.oristartech.rule.core.base.model.RuleActionFunctionParameter</a-hint>
+          <b-hint>com.oristartech.rule.vos.base.vo.ActionFunctionParameterVO,com.oristartech.rule.vos.base.vo.RuleActionFunctionParameterVO</b-hint>
+        </field>
+        
+    </mapping>
+    <mapping>
+        <class-a>com.oristartech.rule.core.base.model.ActionFunctionParameter</class-a>
+        <class-b>com.oristartech.rule.vos.base.vo.ActionFunctionParameterVO</class-b>
+        <field type="one-way">
+            <a>actionFunction.id</a>
+            <b>actionFunctionId</b>
+        </field>
+    </mapping>
+    <mapping>
+        <class-a>com.oristartech.rule.core.base.model.RuleActionFunctionParameter</class-a>
+        <class-b>com.oristartech.rule.vos.base.vo.RuleActionFunctionParameterVO</class-b>
+        <field type="one-way">
+            <a>actionFunction.id</a>
+            <b>actionFunctionId</b>
+        </field>
+    </mapping>
+    
+    <mapping map-id="fn-param-simple-mapper">
+        <class-a>com.oristartech.rule.core.base.model.RuleActionFunctionParameter</class-a>
+        <class-b>com.oristartech.rule.vos.base.vo.RuleActionFunctionParameterVO</class-b>
+        <field-exclude>
+            <a>actionFunction</a>
+            <b>actionFunctionId</b>
+        </field-exclude>
+         <field-exclude>
+            <a>modelField</a>
+            <b>modelField</b>
+        </field-exclude>
+    </mapping>
+    
+     <mapping>
+        <class-a>com.oristartech.rule.core.base.model.FunctionParameterDataSource</class-a>
+        <class-b>com.oristartech.rule.vos.base.vo.FunctionParameterDataSourceVO</class-b>
+        <field type="one-way">
+            <a>functionParameter.id</a>
+            <b>functionParameterId</b>
+        </field>        
+    </mapping>
+</mappings>

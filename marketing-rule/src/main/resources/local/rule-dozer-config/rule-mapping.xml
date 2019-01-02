@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<mapping>
+		<class-a>com.oristartech.rule.core.core.model.RuleGroup</class-a>
+		<class-b>com.oristartech.rule.vos.core.vo.RuleGroupVO</class-b>
+		<field>
+			<a>ruleSection</a>
+			<b>ruleSectionVO</b>
+		</field>
+		<field type="one-way">
+          <a>status</a>
+          <b>status</b>
+        </field>
+        <field type="one-way">
+          <a>createDate</a>
+          <b>createDate</b>
+        </field>
+        <field type="one-way">
+          <a>modifyDate</a>
+          <b>modifyDate</b>
+        </field>
+        <field >
+          <a>relateBusinessCode</a>
+          <b>bizOrderCode</b>
+        </field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.oristartech.rule.core.core.model.Rule</class-a>
+		<class-b>com.oristartech.rule.vos.core.vo.RuleVO</class-b>
+		<field type="one-way">
+			<a>ruleGroup.id</a>
+			<b>ruleGroupId</b>
+		</field>
+		<field type="one-way">
+            <a>ruleGroup.name</a>
+            <b>ruleGroupName</b>
+        </field>
+        <field type="one-way">
+            <a>ruleGroup.remark</a>
+            <b>ruleGroupRemark</b>
+        </field>
+        <field type="one-way">
+          <a>status</a>
+          <b>status</b>
+        </field>
+        <field type="one-way">
+          <a>createDate</a>
+          <b>createDate</b>
+        </field>
+        <field type="one-way">
+          <a>modifyDate</a>
+          <b>modifyDate</b>
+        </field>
+        <field type="one-way">
+          <a>version</a>
+          <b>version</b>
+        </field>
+        <field >
+          <a>businessCode</a>
+          <b>bizOrderCode</b>
+        </field>
+        <!-- bizProperties没有getter, 因为外部使用bizPropertyMap访问 -->
+        <field>
+            <a>bizProperties</a>
+            <b is-accessible="true">bizProperties</b>
+        </field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.oristartech.rule.core.core.model.RuleSection</class-a>
+		<class-b>com.oristartech.rule.vos.core.vo.RuleSectionVO</class-b>
+		<field>
+		    <a>ruleConditions</a>
+		    <b>ruleConditions</b>
+		</field>
+		<field type="one-way">
+			<a>ruleGroup.id</a>
+			<b>ruleGroupId</b>
+		</field>
+		<field type="one-way">
+			<a>rule.id</a>
+			<b>ruleId</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.oristartech.rule.core.core.model.RuleCondition</class-a>
+		<class-b>com.oristartech.rule.vos.core.vo.RuleConditionVO</class-b>
+		<field type="one-way">
+			<a>ruleSection.id</a>
+			<b>ruleSectionId</b>
+		</field>
+		<field>
+			<a>modelCategory.id</a>
+			<b>modelCategoryId</b>
+		</field>
+		<field>
+            <a>modelCategory.name</a>
+            <b>modelCategoryName</b>
+        </field>
+        <field>
+            <a>modelCategory.parentName</a>
+            <b>modelCategoryParentName</b>
+        </field>
+	</mapping>
+
+    <mapping>
+        <class-a>com.oristartech.rule.core.core.model.RuleConditionElement</class-a>
+        <class-b>com.oristartech.rule.vos.core.vo.RuleConditionElementVO</class-b>
+        <field type="one-way">
+            <a>ruleCondition.id</a>
+            <b>ruleConditionId</b>
+        </field>
+        <field>
+            <a>operator.id</a>
+            <b>opId</b>
+        </field>
+        <field>
+            <a>operator.uniqueName</a>
+            <b>opUniqueName</b>
+        </field>
+        <field>
+            <a>operator.isPlainOp</a>
+            <b>isPlainOp</b>
+        </field>
+        <field type="one-way">
+            <a>operator.opNum</a>
+            <b>opNum</b>
+        </field>
+        <field type="one-way"> 
+            <a>operator.cnName</a>
+            <b>opCnName</b>
+        </field>
+        <field type="one-way">
+            <a>operator.opCode</a>
+            <b>opCode</b>
+        </field>
+        <field type="one-way">
+            <a>operator.isCustom</a>
+            <b>isCustomOpCode</b>
+        </field>
+        <field type="one-way">
+            <a>operator.identityTag</a>
+            <b>opIdentityTag</b>
+        </field>
+        <field type="one-way">
+            <a>operator.defaultOperand</a>
+            <b>opDefaultOperand</b>
+        </field>
+        <field type="one-way">
+            <a>operator.isNotNullOp</a>
+            <b>isNotNullOp</b>
+        </field>
+        <field>
+            <a>modelField.id</a>
+            <b>modelFieldId</b>
+        </field>
+        <field>
+            <a>modelField.name</a>
+            <b>modelFieldName</b>
+        </field>
+        <!-- 只从do到vo, 用modelFieldId 或modelFieldName 初始化do的field -->
+         <field  type="one-way"> 
+            <a>modelField</a>
+            <b>modelField</b>
+        </field>
+    </mapping>
+    
+	<mapping>
+		<class-a>com.oristartech.rule.core.core.model.RuleAction</class-a>
+		<class-b>com.oristartech.rule.vos.core.vo.RuleActionVO</class-b>
+		<field type="one-way">
+			<a>ruleSection.id</a>
+			<b>ruleSectionId</b>
+		</field>
+		<field>
+			<a>actionFunction.id</a>
+			<b>actionFnId</b>
+		</field>
+		<field>
+            <a>actionFunction.uniqueName</a>
+            <b>actionFnUniqueName</b>
+        </field>
+		<field>
+            <a>actionFunction.clzName</a>
+            <b>clzName</b>
+        </field>
+		<field>
+            <a>actionFunction.clsMethod</a>
+            <b>clsMethod</b>
+        </field>
+		<field>
+            <a>actionFunction.cnName</a>
+            <b>cnName</b>
+        </field>
+		<field>
+            <a>actionFunction.fnCategory.id</a>
+            <b>fnCategoryId</b>
+        </field>
+		<field>
+            <a>actionFunction.fnCategory.name</a>
+            <b>fnCategoryName</b>
+        </field>
+        <field>
+            <a>actionFunction.fnEffect</a>
+            <b>fnEffect</b>
+        </field>
+        <field>
+            <a>actionFunction.isExeMultiTime</a>
+            <b>fnIsExeMultiTime</b>
+        </field>
+         <field>
+            <a>actionFunction.resultType</a>
+            <b>fnResultType</b>
+        </field>
+	</mapping>
+	<mapping map-id="action-filter-lazy-proper">
+		<class-a>com.oristartech.rule.core.core.model.RuleAction</class-a>
+		<class-b>com.oristartech.rule.vos.core.vo.RuleActionVO</class-b>
+		<field>
+			<a>actionFunction.id</a>
+			<b>actionFnId</b>
+		</field>
+        <field-exclude>
+            <a>ruleSection</a>
+            <b>ruleSectionId</b>
+        </field-exclude>
+	</mapping>
+	<mapping>
+        <class-a>com.oristartech.rule.core.core.model.RuleActionParameter</class-a>
+        <class-b>com.oristartech.rule.vos.core.vo.RuleActionParameterVO</class-b>
+        <field >
+            <a>fnParameter.id</a>
+            <b>fnParameterId</b>
+        </field>
+        <field>
+            <a>fnParameter.name</a>
+            <b>fnParameterName</b>
+        </field>
+        <field>
+            <a>fnParameter.cnName</a>
+            <b>fnParameterCnName</b>
+        </field>
+        <field type="one-way" >
+            <a>fnParameter.isFile</a>
+            <b>isFile</b>
+        </field>
+        <field type="one-way" >
+            <a>fnParameter.isLazy</a>
+            <b>isLazy</b>
+        </field>
+        <field type="one-way" >
+            <a>fnParameter.isConfig</a>
+            <b>isConfig</b>
+        </field>
+        <field type="one-way">
+            <a>ruleAction.id</a>
+            <b>ruleActionId</b>
+        </field>
+    </mapping>
+    
+    <mapping>
+		<class-a>com.oristartech.rule.core.data.sync.model.TaskData</class-a>
+        <class-b>com.oristartech.rule.vos.data.sync.vo.IssueTaskDataVO</class-b>
+        <field >
+            <a>id</a>
+            <b>taskId</b>
+        </field>
+        <field>
+            <a>taskContent.content</a>
+            <b>taskContent</b>
+        </field>
+        <field>
+            <a>taskDefine.serviceBeanName</a>
+            <b>serviceBeanName</b>
+        </field>
+         <field>
+            <a>taskDefine.serviceMethod</a>
+            <b>serviceMethod</b>
+        </field>
+        <field>
+            <a>destNote.isSave</a>
+            <b>isSave</b>
+        </field>	
+    </mapping>
+	
+	<mapping>
+        <class-a>com.oristartech.rule.core.core.model.RuleExeStatis</class-a>
+        <class-b>com.oristartech.rule.vos.core.vo.RuleExeStatisVO</class-b>
+    </mapping>
+</mappings>
