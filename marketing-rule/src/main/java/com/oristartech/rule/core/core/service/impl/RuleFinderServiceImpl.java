@@ -54,4 +54,9 @@ public class RuleFinderServiceImpl extends RuleBaseServiceImpl implements IRuleF
 	public List<RuleGroupVO> assembleRuleGroupVO(List<RuleGroupVO> groupVOs) {
 		return ruleFinderDao.assembleRuleGroupVO(groupVOs);
 	}
+	
+	@Override
+	public List<RuleGroupVO> assembleRuleGroup(List<RuleGroupVO> groupVOs) {
+		return ruleFinderDao.assembleRuleGroup(groupVOs);
+	}
 }

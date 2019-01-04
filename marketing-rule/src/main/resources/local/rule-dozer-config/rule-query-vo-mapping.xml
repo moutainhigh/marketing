@@ -6,85 +6,178 @@
 	<mapping>
 		<class-a>java.util.Map</class-a>
 		<class-b>com.oristartech.rule.vos.core.vo.RuleSectionVO</class-b>
+		<field>
+            <a key="rs_id">this</a>
+            <b>id</b>
+        </field>
+        <field>
+            <a key="rs_isSerial">this</a>
+            <b>isSerial</b>
+        </field>
+        <field>
+			<a key="rs_ruleGroupId">this</a>
+			<b>ruleGroupId</b>
+		</field>
+		<field>
+            <a key="rs_ruleId">this</a>
+            <b>ruleId</b>
+        </field>
+        <field>
+            <a key="rs_seqNum">this</a>
+            <b>seqNum</b>
+        </field>
+	</mapping>
+	
+	<mapping>
+		<class-a>java.util.Map</class-a>
+		<class-b>com.oristartech.rule.vos.core.vo.RuleVO</class-b>
+		<field>
+            <a key="r_id">this</a>
+            <b>id</b>
+        </field>
+        <field>
+			<a key="r_ruleGroupId">this</a>
+			<b>ruleGroupId</b>
+		</field>
+		<field>
+            <a key="r_name">this</a>
+            <b>name</b>
+        </field>
+        <field>
+            <a key="r_seqNum">this</a>
+            <b>seqNum</b>
+        </field>
+        <field>
+            <a key="r_priority">this</a>
+            <b>priority</b>
+        </field>
+        <field>
+            <a key="r_remark">this</a>
+            <b>remark</b>
+        </field>
+        <field custom-converter="com.oristartech.config.converter.EnumDozerConverter">
+            <a key="r_status">this</a>
+            <b>status</b>
+        </field>
+        <field>
+            <a key="r_ruleType">this</a>
+            <b>ruleType</b>
+        </field>
+        <field custom-converter="com.oristartech.config.converter.EnumDozerConverter">
+            <a key="r_executeMode">this</a>
+            <b>executeMode</b>
+        </field>
+        <field custom-converter="com.oristartech.config.converter.DateDozerConverter">
+            <a key="r_validDateStart">this</a>
+            <b>validDateStart</b>
+        </field>
+        <field custom-converter="com.oristartech.config.converter.DateDozerConverter">
+            <a key="r_validDateEnd">this</a>
+            <b>validDateEnd</b>
+        </field>
+        <field>
+            <a key="r_bizProperties">this</a>
+            <b>bizProperties</b>
+        </field>
+        <field>
+            <a key="r_bizOrderCode">this</a>
+            <b>bizOrderCode</b>
+        </field>
+        <field>
+            <a key="r_version">this</a>
+            <b>version</b>
+        </field>
+        <field-exclude>
+        	<a>this</a>
+            <b>droolsValidTimeEndStr</b>
+        </field-exclude>
+        <field-exclude>
+        	<a>this</a>
+            <b>validTimeStartStr</b>
+        </field-exclude>
+        <field-exclude>
+        	<a>this</a>
+            <b>validTimeEndStr</b>
+        </field-exclude>
 	</mapping>
 	
 	<mapping>
 		<class-a>java.util.Map</class-a>
 		<class-b>com.oristartech.rule.vos.core.vo.RuleGroupVO</class-b>
 		<field>
-			<a key="tenantId">this</a>
+			<a key="mac_tenantId">this</a>
 			<b>tenantId</b>
 		</field>
 		<field>
-            <a key="id">this</a>
+            <a key="rg_id">this</a>
             <b>id</b>
         </field>
         <field>
-            <a key="ruleSectionVO_id">this</a>
+            <a key="rs_id">this</a>
             <b>ruleSectionVO.id</b>
         </field>
         <field>
-			<a key="ruleSectionVO_isSerial">this</a>
+			<a key="rs_isSerial">this</a>
 			<b>ruleSectionVO.isSerial</b>
 		</field>
 		<field>
-            <a key="ruleSectionVO_ruleId">this</a>
+            <a key="rs_ruleId">this</a>
             <b>ruleSectionVO.ruleId</b>
         </field>
         <field>
-            <a key="ruleSectionVO_ruleGroupId">this</a>
+            <a key="rs_ruleGroupId">this</a>
             <b>ruleSectionVO.ruleGroupId</b>
         </field>
         <field>
-			<a key="ruleSectionVO_seqNum">this</a>
+			<a key="rs_seqNum">this</a>
 			<b>ruleSectionVO.seqNum</b>
 		</field>
 		<field>
-            <a key="createDate">this</a>
+            <a key="rg_createDate">this</a>
             <b>createDate</b>
         </field>
         <field custom-converter="com.oristartech.config.converter.EnumDozerConverter">
-            <a key="executeMode">this</a>
+            <a key="rg_executeMode">this</a>
             <b>executeMode</b>
         </field>
         <field>
-			<a key="modifyDate">this</a>
+			<a key="rg_modifyDate">this</a>
 			<b>modifyDate</b>
 		</field>
 		<field>
-            <a key="name">this</a>
+            <a key="rg_name">this</a>
             <b>name</b>
         </field>
         <field>
-            <a key="priority">this</a>
+            <a key="rg_priority">this</a>
             <b>priority</b>
         </field>
         <field>
-			<a key="bizOrderCode">this</a>
+			<a key="rg_bizOrderCode">this</a>
 			<b>bizOrderCode</b>
 		</field>
 		<field>
-            <a key="remark">this</a>
+            <a key="rg_remark">this</a>
             <b>remark</b>
         </field>
         <field>
-            <a key="ruleType">this</a>
+            <a key="rg_ruleType">this</a>
             <b>ruleType</b>
         </field>
         <field custom-converter="com.oristartech.config.converter.EnumDozerConverter">
-            <a key="status">this</a>
+            <a key="rg_status">this</a>
             <b>status</b>
         </field>
         <field>
-			<a key="templateId">this</a>
+			<a key="rg_templateId">this</a>
 			<b>templateId</b>
 		</field>
 		<field custom-converter="com.oristartech.config.converter.DateDozerConverter">
-            <a key="validDateEnd">this</a>
+            <a key="rg_validDateEnd">this</a>
             <b>validDateEnd</b>
         </field>
         <field custom-converter="com.oristartech.config.converter.DateDozerConverter">
-            <a key="validDateStart">this</a>
+            <a key="rg_validDateStart">this</a>
             <b>validDateStart</b>
         </field>
 	</mapping>
@@ -93,17 +186,25 @@
 		<class-a>java.util.Map</class-a>
 		<class-b>com.oristartech.rule.vos.core.vo.RuleActionVO</class-b>
 		<field>
-			<a key="action_Id">this</a>
+			<a key="ra_id">this</a>
 			<b>id</b>
 		</field>
 		<field>
-            <a key="action_isAnd">this</a>
+            <a key="ra_isAnd">this</a>
             <b>isAnd</b>
         </field>
         <field>
-            <a key="action_seqNum">this</a>
+            <a key="ra_seqNum">this</a>
             <b>seqNum</b>
         </field>
+        <field>
+            <a key="ra_ruleSectionId">this</a>
+            <b>ruleSectionId</b>
+        </field>
+        <field-exclude>
+        	<a>this</a>
+            <b>allParameterMap</b>
+        </field-exclude>
 	</mapping>
 
     <mapping >
@@ -122,14 +223,50 @@
             <b>modelCategoryId</b>
         </field>
         <field>
+            <a key="con_modifier">this</a>
+            <b>modifier</b>
+        </field>
+        <field>
+            <a key="con_fieldGroupId">this</a>
+            <b>fieldGroupId</b>
+        </field>
+        <field>
+            <a key="con_ruleSectionId">this</a>
+            <b>ruleSectionId</b>
+        </field>
+        <field>
             <a key="con_modelCategoryName">this</a>
             <b>modelCategoryName</b>
+        </field>
+        <field>
+            <a key="mc_id">this</a>
+            <b>modelCategoryId</b>
+        </field>
+        <field>
+            <a key="mc_name">this</a>
+            <b>modelCategoryName</b>
+        </field>
+        <field>
+            <a key="mc_parentName">this</a>
+            <b>modelCategoryParentName</b>
         </field>
     </mapping>
     
      <mapping >
         <class-a>java.util.Map</class-a>
         <class-b>com.oristartech.rule.vos.core.vo.RuleConditionElementVO</class-b>
+        <field>
+            <a key="conEle_modelFieldId">this</a>
+            <b>modelFieldId</b>
+        </field>
+        <field>
+            <a key="conEle_opId">this</a>
+            <b>opId</b>
+        </field>
+        <field>
+            <a key="conEle_ruleConditionId">this</a>
+            <b>ruleConditionId</b>
+        </field>
         <field>
             <a key="conEle_id">this</a>
             <b>id</b>
@@ -158,6 +295,118 @@
             <a key="conEle_operandLabel">this</a>
             <b>operandLabel</b>
         </field>
+        <field>
+            <a key="op_opCnName">this</a>
+            <b>opCnName</b>
+        </field>
+        <field>
+            <a key="op_opCode">this</a>
+            <b>opCode</b>
+        </field>
+        <field>
+            <a key="op_opConditionModifier">this</a>
+            <b>opConditionModifier</b>
+        </field>
+        <field>
+            <a key="op_opUniqueName">this</a>
+            <b>opUniqueName</b>
+        </field>
+        <field>
+            <a key="op_opNum">this</a>
+            <b>opNum</b>
+        </field>
+        <field>
+            <a key="op_opDefaultOperand">this</a>
+            <b>opDefaultOperand</b>
+        </field>
+        <field>
+            <a key="op_isPlainOp">this</a>
+            <b>isPlainOp</b>
+        </field>
+        <field>
+            <a key="op_isCustomOpCode">this</a>
+            <b>isCustomOpCode</b>
+        </field>
+        <field>
+            <a key="op_opIdentityTag">this</a>
+            <b>opIdentityTag</b>
+        </field>
+        <field>
+            <a key="op_isNotNullOp">this</a>
+            <b>isNotNullOp</b>
+        </field>
     </mapping>
-
+	
+	<mapping >
+		<class-a>java.util.Map</class-a>
+		<class-b>com.oristartech.rule.vos.base.vo.ModelFieldVO</class-b>
+		<field>
+			<a key="mf_id">this</a>
+			<b>id</b>
+		</field>
+		<field>
+            <a key="mf_cnName">this</a>
+            <b>cnName</b>
+        </field>
+        <field>
+            <a key="mf_remark">this</a>
+            <b>remark</b>
+        </field>
+        <field>
+			<a key="mf_defaultValue">this</a>
+			<b>defaultValue</b>
+		</field>
+		<field>
+            <a key="mf_externPageMethod">this</a>
+            <b>externPageMethod</b>
+        </field>
+        <field>
+            <a key="mf_searchServiceName">this</a>
+            <b>searchServiceName</b>
+        </field>
+        <field>
+			<a key="mf_modelServiceName">this</a>
+			<b>modelServiceName</b>
+		</field>
+		<field>
+            <a key="mf_isDelete">this</a>
+            <b>isDelete</b>
+        </field>
+        <field>
+            <a key="mf_isLoadAuto">this</a>
+            <b>isLoadAuto</b>
+        </field>
+        <field>
+			<a key="mf_isExtern">this</a>
+			<b>isExtern</b>
+		</field>
+		<field>
+            <a key="mf_labelFieldName">this</a>
+            <b>labelFieldName</b>
+        </field>
+        <field>
+            <a key="mf_name">this</a>
+            <b>name</b>
+        </field>
+        <field>
+			<a key="mf_type">this</a>
+			<b>type</b>
+		</field>
+		<field>
+            <a key="mf_businessSystemId">this</a>
+            <b>businessSystemId</b>
+        </field>
+        <field>
+            <a key="mf_modelCategoryId">this</a>
+            <b>modelCategoryId</b>
+        </field>
+        <field>
+			<a key="mf_loadServiceName">this</a>
+			<b>loadServiceName</b>
+		</field>
+		<field>
+			<a key="mf_modelCategoryName">this</a>
+			<b>modelCategoryName</b>
+		</field>
+	</mapping>
 </mappings>

@@ -312,12 +312,12 @@ public class ModelFieldVO implements Serializable {
 	}
 
 	public Boolean getIsExtern() {
-    	return isExtern;
-    }
+		return isExtern;
+	}
 
 	public void setIsExtern(Boolean isExtern) {
-    	this.isExtern = isExtern;
-    }
+		this.isExtern = isExtern;
+	}
 
 	public Boolean getIsDelete() {
     	return isDelete;

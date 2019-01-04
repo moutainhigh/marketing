@@ -599,4 +599,29 @@ public class RuleBaseDaoImpl<T, ID extends Serializable> extends GenericDaoHiber
 		page.setResult(query1.list());
 		return page;
 	}
+	
+	/**
+	 * SQL查询Map结果集(返回的列名会取自定义别名)
+	 * @param sql
+	 * @param values
+	 * @return
+	 * @throws Exception
+	 */
+	protected List queryMapBySql(String sql, Object... values) throws Exception {
+		return (List) getHibernateTemplate().execute(new HibernateCallback() {
+
+			public List doInHibernate(Session session) throws HibernateException {
+				NativeQuery query1 = session.createNativeQuery(sql);
+				if (values != null) {
+					for (int i = 1; i <= values.length; i++) {
+						query1.setParameter(i, values[i-1]);
+					}
+				}
+				query1.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+				
+				return query1.list();
+			}
+
+		});
+	}
 }

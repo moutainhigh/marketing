@@ -23,10 +23,6 @@ public class ModelCategoryServiceImpl extends RuleBaseServiceImpl implements IMo
 	@Autowired
 	private IModelCategoryDao ruleModelCategoryDao;
 	
-	public void setRuleModelCategoryDao(IModelCategoryDao ruleModelCategoryDao) {
-    	this.ruleModelCategoryDao = ruleModelCategoryDao;
-    }
-
 	public ModelCategoryVO getByName(String categoryName) {
 		if(!BlankUtil.isBlank(categoryName)) {
 			ModelCategory cat = ruleModelCategoryDao.getByName(categoryName);

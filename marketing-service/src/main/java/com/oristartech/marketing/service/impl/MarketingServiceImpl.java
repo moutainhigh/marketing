@@ -308,7 +308,7 @@ public class MarketingServiceImpl extends RuleBaseServiceImpl implements IMarket
 		}
 		
 		if(vos != null && !BlankUtil.isBlank(vos)) {
-			List<RuleGroupVO> groupVos = ruleFinderService.assembleRuleGroupVO(vos);
+			List<RuleGroupVO> groupVos = ruleFinderService.assembleRuleGroup(vos);
 			Page<RuleGroupVO> pageVo = new Page<RuleGroupVO>(page.getStartIndex(), page.getTotalCount(), page.getPageSize(), groupVos);
 			return pageVo;
 		}

@@ -37,7 +37,7 @@ public class RuleSectionVO implements Serializable{
 	/**
 	 * 条件集合
 	 */
-	private List<RuleConditionVO> ruleConditions;
+	private List<RuleConditionVO> ruleConditions = new ArrayList<RuleConditionVO>();
 	/**
 	 * 规则动作集合
 	 */

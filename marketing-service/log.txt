@@ -4330,3 +4330,333 @@ java.lang.NumberFormatException: For input string: "null"
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
+[2019-01-03 14:48:15] [ERROR] -  [DUBBO] qos-server can not bind localhost:22222, dubbo version: 2.6.0, current host: 127.0.0.1
+java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:414)
+	at sun.nio.ch.Net.bind(Net.java:406)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:214)
+	at io.netty.channel.socket.nio.NioServerSocketChannel.doBind(NioServerSocketChannel.java:128)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.bind(AbstractChannel.java:558)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.bind(DefaultChannelPipeline.java:1358)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeBind(AbstractChannelHandlerContext.java:501)
+	at io.netty.channel.AbstractChannelHandlerContext.bind(AbstractChannelHandlerContext.java:486)
+	at io.netty.channel.DefaultChannelPipeline.bind(DefaultChannelPipeline.java:1019)
+	at io.netty.channel.AbstractChannel.bind(AbstractChannel.java:254)
+	at io.netty.bootstrap.AbstractBootstrap$2.run(AbstractBootstrap.java:366)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:163)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:404)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:463)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:886)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:745)
+[2019-01-03 18:56:00] [ERROR] - Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> conEle.opCode  [in template "rule.ftl" at line 189, column 65]
+
+----
+Tip: It's the step after the last dot that caused this error, not those before it.
+----
+Tip: If the failing expression is known to legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${conEle.opCode}  [in template "rule.ftl" in macro "composeCompare" at line 189, column 63]
+	- Reached through: @composeCompare conEle  [in template "rule.ftl" in macro "composeConditions" at line 104, column 13]
+	- Reached through: @composeConditions rule.ruleSections[0]  [in template "rule.ftl" in macro "composeSimpleSections" at line 52, column 9]
+	- Reached through: @composeSimpleSections  [in template "rule.ftl" at line 40, column 8]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:467)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:389)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:358)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:100)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:63)
+	at freemarker.core.Environment.visit(Environment.java:330)
+	at freemarker.core.Environment.visit(Environment.java:372)
+	at freemarker.core.Environment.invoke(Environment.java:775)
+	at freemarker.core.UnifiedCall.accept(UnifiedCall.java:83)
+	at freemarker.core.Environment.visit(Environment.java:366)
+	at freemarker.core.IteratorBlock$IterationContext.executedNestedContentForCollOrSeqListing(IteratorBlock.java:317)
+	at freemarker.core.IteratorBlock$IterationContext.executeNestedContent(IteratorBlock.java:271)
+	at freemarker.core.IteratorBlock$IterationContext.accept(IteratorBlock.java:242)
+	at freemarker.core.Environment.visitIteratorBlock(Environment.java:642)
+	at freemarker.core.IteratorBlock.acceptWithResult(IteratorBlock.java:107)
+	at freemarker.core.IteratorBlock.accept(IteratorBlock.java:93)
+	at freemarker.core.Environment.visit(Environment.java:330)
+	at freemarker.core.Environment.visit(Environment.java:372)
+	at freemarker.core.IteratorBlock$IterationContext.executedNestedContentForCollOrSeqListing(IteratorBlock.java:317)
+	at freemarker.core.IteratorBlock$IterationContext.executeNestedContent(IteratorBlock.java:271)
+	at freemarker.core.IteratorBlock$IterationContext.accept(IteratorBlock.java:242)
+	at freemarker.core.Environment.visitIteratorBlock(Environment.java:642)
+	at freemarker.core.IteratorBlock.acceptWithResult(IteratorBlock.java:107)
+	at freemarker.core.IteratorBlock.accept(IteratorBlock.java:93)
+	at freemarker.core.Environment.visit(Environment.java:330)
+	at freemarker.core.Environment.visit(Environment.java:372)
+	at freemarker.core.Environment.invoke(Environment.java:775)
+	at freemarker.core.UnifiedCall.accept(UnifiedCall.java:83)
+	at freemarker.core.Environment.visit(Environment.java:366)
+	at freemarker.core.Environment.invoke(Environment.java:775)
+	at freemarker.core.UnifiedCall.accept(UnifiedCall.java:83)
+	at freemarker.core.Environment.visit(Environment.java:330)
+	at freemarker.core.Environment.visit(Environment.java:336)
+	at freemarker.core.Environment.visit(Environment.java:336)
+	at freemarker.core.Environment.process(Environment.java:309)
+	at freemarker.template.Template.process(Template.java:384)
+	at org.springframework.ui.freemarker.FreeMarkerTemplateUtils.processTemplateIntoString(FreeMarkerTemplateUtils.java:50)
+	at com.oristartech.rule.core.core.template.service.impl.FreeMarkerTemplateServiceImpl.toRuleContent(FreeMarkerTemplateServiceImpl.java:77)
+	at com.oristartech.rule.core.executor.impl.RuleDroolsManagerServiceImpl.loadRuleToWorkMemory(RuleDroolsManagerServiceImpl.java:183)
+	at com.oristartech.rule.core.executor.impl.RuleDroolsManagerServiceImpl.loadRuleToWorkMemory(RuleDroolsManagerServiceImpl.java:53)
+	at com.oristartech.rule.core.executor.impl.RuleLoaderServiceImpl.loadRuleGroup(RuleLoaderServiceImpl.java:46)
+	at com.oristartech.rule.core.executor.impl.RuleLoaderServiceImpl.loadRuleGroups(RuleLoaderServiceImpl.java:54)
+	at com.oristartech.rule.core.executor.impl.RuleLoaderServiceImpl$$FastClassBySpringCGLIB$$d68cdde9.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$$Lambda$699/599410303.proceedWithInvocation(Unknown Source)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at com.oristartech.rule.core.executor.impl.RuleLoaderServiceImpl$$EnhancerBySpringCGLIB$$ca76f44a.loadRuleGroups(<generated>)
+	at com.oristartech.rule.core.init.service.impl.RuleExecutorInitServiceImpl$1.run(RuleExecutorInitServiceImpl.java:111)
+	at java.lang.Thread.run(Thread.java:745)
+	at com.oristartech.marketing.core.thread.SynchedExitOnlyThread.run(SynchedExitOnlyThread.java:20)
+[2019-01-03 18:56:00] [ERROR] - Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> conEle.opCode  [in template "rule.ftl" at line 189, column 65]
+
+----
+Tip: It's the step after the last dot that caused this error, not those before it.
+----
+Tip: If the failing expression is known to legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${conEle.opCode}  [in template "rule.ftl" in macro "composeCompare" at line 189, column 63]
+	- Reached through: @composeCompare conEle  [in template "rule.ftl" in macro "composeConditions" at line 104, column 13]
+	- Reached through: @composeConditions rule.ruleSections[0]  [in template "rule.ftl" in macro "composeSimpleSections" at line 52, column 9]
+	- Reached through: @composeSimpleSections  [in template "rule.ftl" at line 40, column 8]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:467)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:389)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:358)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:100)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:63)
+	at freemarker.core.Environment.visit(Environment.java:330)
+	at freemarker.core.Environment.visit(Environment.java:372)
+	at freemarker.core.Environment.invoke(Environment.java:775)
+	at freemarker.core.UnifiedCall.accept(UnifiedCall.java:83)
+	at freemarker.core.Environment.visit(Environment.java:366)
+	at freemarker.core.IteratorBlock$IterationContext.executedNestedContentForCollOrSeqListing(IteratorBlock.java:317)
+	at freemarker.core.IteratorBlock$IterationContext.executeNestedContent(IteratorBlock.java:271)
+	at freemarker.core.IteratorBlock$IterationContext.accept(IteratorBlock.java:242)
+	at freemarker.core.Environment.visitIteratorBlock(Environment.java:642)
+	at freemarker.core.IteratorBlock.acceptWithResult(IteratorBlock.java:107)
+	at freemarker.core.IteratorBlock.accept(IteratorBlock.java:93)
+	at freemarker.core.Environment.visit(Environment.java:330)
+	at freemarker.core.Environment.visit(Environment.java:372)
+	at freemarker.core.IteratorBlock$IterationContext.executedNestedContentForCollOrSeqListing(IteratorBlock.java:317)
+	at freemarker.core.IteratorBlock$IterationContext.executeNestedContent(IteratorBlock.java:271)
+	at freemarker.core.IteratorBlock$IterationContext.accept(IteratorBlock.java:242)
+	at freemarker.core.Environment.visitIteratorBlock(Environment.java:642)
+	at freemarker.core.IteratorBlock.acceptWithResult(IteratorBlock.java:107)
+	at freemarker.core.IteratorBlock.accept(IteratorBlock.java:93)
+	at freemarker.core.Environment.visit(Environment.java:330)
+	at freemarker.core.Environment.visit(Environment.java:372)
+	at freemarker.core.Environment.invoke(Environment.java:775)
+	at freemarker.core.UnifiedCall.accept(UnifiedCall.java:83)
+	at freemarker.core.Environment.visit(Environment.java:366)
+	at freemarker.core.Environment.invoke(Environment.java:775)
+	at freemarker.core.UnifiedCall.accept(UnifiedCall.java:83)
+	at freemarker.core.Environment.visit(Environment.java:330)
+	at freemarker.core.Environment.visit(Environment.java:336)
+	at freemarker.core.Environment.visit(Environment.java:336)
+	at freemarker.core.Environment.process(Environment.java:309)
+	at freemarker.template.Template.process(Template.java:384)
+	at org.springframework.ui.freemarker.FreeMarkerTemplateUtils.processTemplateIntoString(FreeMarkerTemplateUtils.java:50)
+	at com.oristartech.rule.core.core.template.service.impl.FreeMarkerTemplateServiceImpl.toRuleContent(FreeMarkerTemplateServiceImpl.java:77)
+	at com.oristartech.rule.core.executor.impl.RuleDroolsManagerServiceImpl.loadRuleToWorkMemory(RuleDroolsManagerServiceImpl.java:183)
+	at com.oristartech.rule.core.executor.impl.RuleDroolsManagerServiceImpl.loadRuleToWorkMemory(RuleDroolsManagerServiceImpl.java:53)
+	at com.oristartech.rule.core.executor.impl.RuleLoaderServiceImpl.loadRuleGroup(RuleLoaderServiceImpl.java:46)
+	at com.oristartech.rule.core.executor.impl.RuleLoaderServiceImpl.loadRuleGroups(RuleLoaderServiceImpl.java:54)
+	at com.oristartech.rule.core.executor.impl.RuleLoaderServiceImpl$$FastClassBySpringCGLIB$$d68cdde9.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$$Lambda$699/599410303.proceedWithInvocation(Unknown Source)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at com.oristartech.rule.core.executor.impl.RuleLoaderServiceImpl$$EnhancerBySpringCGLIB$$ca76f44a.loadRuleGroups(<generated>)
+	at com.oristartech.rule.core.init.service.impl.RuleExecutorInitServiceImpl$1.run(RuleExecutorInitServiceImpl.java:111)
+	at java.lang.Thread.run(Thread.java:745)
+	at com.oristartech.marketing.core.thread.SynchedExitOnlyThread.run(SynchedExitOnlyThread.java:20)
+[2019-01-03 18:56:00] [ERROR] - Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> conEle.opCode  [in template "rule.ftl" at line 189, column 65]
+
+----
+Tip: It's the step after the last dot that caused this error, not those before it.
+----
+Tip: If the failing expression is known to legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${conEle.opCode}  [in template "rule.ftl" in macro "composeCompare" at line 189, column 63]
+	- Reached through: @composeCompare conEle  [in template "rule.ftl" in macro "composeConditions" at line 104, column 13]
+	- Reached through: @composeConditions rule.ruleSections[0]  [in template "rule.ftl" in macro "composeSimpleSections" at line 52, column 9]
+	- Reached through: @composeSimpleSections  [in template "rule.ftl" at line 40, column 8]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:467)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:389)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:358)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:100)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:63)
+	at freemarker.core.Environment.visit(Environment.java:330)
+	at freemarker.core.Environment.visit(Environment.java:372)
+	at freemarker.core.Environment.invoke(Environment.java:775)
+	at freemarker.core.UnifiedCall.accept(UnifiedCall.java:83)
+	at freemarker.core.Environment.visit(Environment.java:366)
+	at freemarker.core.IteratorBlock$IterationContext.executedNestedContentForCollOrSeqListing(IteratorBlock.java:317)
+	at freemarker.core.IteratorBlock$IterationContext.executeNestedContent(IteratorBlock.java:271)
+	at freemarker.core.IteratorBlock$IterationContext.accept(IteratorBlock.java:242)
+	at freemarker.core.Environment.visitIteratorBlock(Environment.java:642)
+	at freemarker.core.IteratorBlock.acceptWithResult(IteratorBlock.java:107)
+	at freemarker.core.IteratorBlock.accept(IteratorBlock.java:93)
+	at freemarker.core.Environment.visit(Environment.java:330)
+	at freemarker.core.Environment.visit(Environment.java:372)
+	at freemarker.core.IteratorBlock$IterationContext.executedNestedContentForCollOrSeqListing(IteratorBlock.java:317)
+	at freemarker.core.IteratorBlock$IterationContext.executeNestedContent(IteratorBlock.java:271)
+	at freemarker.core.IteratorBlock$IterationContext.accept(IteratorBlock.java:242)
+	at freemarker.core.Environment.visitIteratorBlock(Environment.java:642)
+	at freemarker.core.IteratorBlock.acceptWithResult(IteratorBlock.java:107)
+	at freemarker.core.IteratorBlock.accept(IteratorBlock.java:93)
+	at freemarker.core.Environment.visit(Environment.java:330)
+	at freemarker.core.Environment.visit(Environment.java:372)
+	at freemarker.core.Environment.invoke(Environment.java:775)
+	at freemarker.core.UnifiedCall.accept(UnifiedCall.java:83)
+	at freemarker.core.Environment.visit(Environment.java:366)
+	at freemarker.core.Environment.invoke(Environment.java:775)
+	at freemarker.core.UnifiedCall.accept(UnifiedCall.java:83)
+	at freemarker.core.Environment.visit(Environment.java:330)
+	at freemarker.core.Environment.visit(Environment.java:336)
+	at freemarker.core.Environment.visit(Environment.java:336)
+	at freemarker.core.Environment.process(Environment.java:309)
+	at freemarker.template.Template.process(Template.java:384)
+	at org.springframework.ui.freemarker.FreeMarkerTemplateUtils.processTemplateIntoString(FreeMarkerTemplateUtils.java:50)
+	at com.oristartech.rule.core.core.template.service.impl.FreeMarkerTemplateServiceImpl.toRuleContent(FreeMarkerTemplateServiceImpl.java:77)
+	at com.oristartech.rule.core.executor.impl.RuleDroolsManagerServiceImpl.loadRuleToWorkMemory(RuleDroolsManagerServiceImpl.java:183)
+	at com.oristartech.rule.core.executor.impl.RuleDroolsManagerServiceImpl.loadRuleToWorkMemory(RuleDroolsManagerServiceImpl.java:53)
+	at com.oristartech.rule.core.executor.impl.RuleLoaderServiceImpl.loadRuleGroup(RuleLoaderServiceImpl.java:46)
+	at com.oristartech.rule.core.executor.impl.RuleLoaderServiceImpl.loadRuleGroups(RuleLoaderServiceImpl.java:54)
+	at com.oristartech.rule.core.executor.impl.RuleLoaderServiceImpl$$FastClassBySpringCGLIB$$d68cdde9.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$$Lambda$699/599410303.proceedWithInvocation(Unknown Source)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at com.oristartech.rule.core.executor.impl.RuleLoaderServiceImpl$$EnhancerBySpringCGLIB$$ca76f44a.loadRuleGroups(<generated>)
+	at com.oristartech.rule.core.init.service.impl.RuleExecutorInitServiceImpl$1.run(RuleExecutorInitServiceImpl.java:111)
+	at java.lang.Thread.run(Thread.java:745)
+	at com.oristartech.marketing.core.thread.SynchedExitOnlyThread.run(SynchedExitOnlyThread.java:20)
+[2019-01-03 23:42:37] [ERROR] - Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> RuleConditionUtil.getModelCategoryName(conEle)  [in template "rule.ftl" at line 177, column 53]
+
+----
+Tip: If the failing expression is known to legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${RuleConditionUtil.getModelCategoryN...  [in template "rule.ftl" in macro "composeCompare" at line 177, column 51]
+	- Reached through: @composeCompare conEle  [in template "rule.ftl" in macro "composeConditions" at line 104, column 13]
+	- Reached through: @composeConditions rule.ruleSections[0]  [in template "rule.ftl" in macro "composeSimpleSections" at line 52, column 9]
+	- Reached through: @composeSimpleSections  [in template "rule.ftl" at line 40, column 8]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:467)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:389)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:358)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:100)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:63)
+	at freemarker.core.Environment.visit(Environment.java:330)
+	at freemarker.core.Environment.visit(Environment.java:372)
+	at freemarker.core.Environment.invoke(Environment.java:775)
+	at freemarker.core.UnifiedCall.accept(UnifiedCall.java:83)
+	at freemarker.core.Environment.visit(Environment.java:366)
+	at freemarker.core.IteratorBlock$IterationContext.executedNestedContentForCollOrSeqListing(IteratorBlock.java:317)
+	at freemarker.core.IteratorBlock$IterationContext.executeNestedContent(IteratorBlock.java:271)
+	at freemarker.core.IteratorBlock$IterationContext.accept(IteratorBlock.java:242)
+	at freemarker.core.Environment.visitIteratorBlock(Environment.java:642)
+	at freemarker.core.IteratorBlock.acceptWithResult(IteratorBlock.java:107)
+	at freemarker.core.IteratorBlock.accept(IteratorBlock.java:93)
+	at freemarker.core.Environment.visit(Environment.java:330)
+	at freemarker.core.Environment.visit(Environment.java:372)
+	at freemarker.core.IteratorBlock$IterationContext.executedNestedContentForCollOrSeqListing(IteratorBlock.java:317)
+	at freemarker.core.IteratorBlock$IterationContext.executeNestedContent(IteratorBlock.java:271)
+	at freemarker.core.IteratorBlock$IterationContext.accept(IteratorBlock.java:242)
+	at freemarker.core.Environment.visitIteratorBlock(Environment.java:642)
+	at freemarker.core.IteratorBlock.acceptWithResult(IteratorBlock.java:107)
+	at freemarker.core.IteratorBlock.accept(IteratorBlock.java:93)
+	at freemarker.core.Environment.visit(Environment.java:330)
+	at freemarker.core.Environment.visit(Environment.java:372)
+	at freemarker.core.Environment.invoke(Environment.java:775)
+	at freemarker.core.UnifiedCall.accept(UnifiedCall.java:83)
+	at freemarker.core.Environment.visit(Environment.java:366)
+	at freemarker.core.Environment.invoke(Environment.java:775)
+	at freemarker.core.UnifiedCall.accept(UnifiedCall.java:83)
+	at freemarker.core.Environment.visit(Environment.java:330)
+	at freemarker.core.Environment.visit(Environment.java:336)
+	at freemarker.core.Environment.visit(Environment.java:336)
+	at freemarker.core.Environment.process(Environment.java:309)
+	at freemarker.template.Template.process(Template.java:384)
+	at org.springframework.ui.freemarker.FreeMarkerTemplateUtils.processTemplateIntoString(FreeMarkerTemplateUtils.java:50)
+	at com.oristartech.rule.core.core.template.service.impl.FreeMarkerTemplateServiceImpl.toRuleContent(FreeMarkerTemplateServiceImpl.java:77)
+	at com.oristartech.rule.core.executor.impl.RuleDroolsManagerServiceImpl.loadRuleToWorkMemory(RuleDroolsManagerServiceImpl.java:183)
+	at com.oristartech.rule.core.executor.impl.RuleDroolsManagerServiceImpl.loadRuleToWorkMemory(RuleDroolsManagerServiceImpl.java:53)
+	at com.oristartech.rule.core.executor.impl.RuleLoaderServiceImpl.loadRuleGroup(RuleLoaderServiceImpl.java:46)
+	at com.oristartech.rule.core.executor.impl.RuleLoaderServiceImpl.loadRuleGroups(RuleLoaderServiceImpl.java:54)
+	at com.oristartech.rule.core.executor.impl.RuleLoaderServiceImpl$$FastClassBySpringCGLIB$$d68cdde9.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$$Lambda$699/802113501.proceedWithInvocation(Unknown Source)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at com.oristartech.rule.core.executor.impl.RuleLoaderServiceImpl$$EnhancerBySpringCGLIB$$ef4882d6.loadRuleGroups(<generated>)
+	at com.oristartech.rule.core.init.service.impl.RuleExecutorInitServiceImpl$1.run(RuleExecutorInitServiceImpl.java:111)
+	at java.lang.Thread.run(Thread.java:745)
+	at com.oristartech.marketing.core.thread.SynchedExitOnlyThread.run(SynchedExitOnlyThread.java:20)
