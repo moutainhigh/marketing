@@ -1,6 +1,7 @@
 package com.oristartech.rule.core.core.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.oristartech.rule.common.util.Page;
 import com.oristartech.rule.search.RuleSearchCondition;
@@ -13,8 +14,31 @@ import com.oristartech.rule.vos.core.vo.RuleGroupVO;
  */
 public interface IRuleFinderDao {
 	
-	public List<RuleGroupVO> assembleRuleGroup(List<RuleGroupVO> groupVOs);
+	/**
+	 * 查询规则下的条件信息，包含rule-section-condition-conditionElement
+	 * @param groupIds
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Map<String,Object>> getRuleConditionInfo(List<String> groupIds) throws Exception;
 	
+	/**
+	 * 查询规则组下的section信息，包含section-condition-conditionElement
+	 * @param groupIds
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Map<String,Object>> getGroupSectionInfo(List<String> groupIds) throws Exception;
+	
+	/**
+	 * 查询规则下的action信息，包含section-action
+	 * @param groupIds
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Map<String,Object>> getRuleActionInfo(List<String> groupIds) throws Exception;
+	
+	@Deprecated
 	public List<RuleGroupVO> assembleRuleGroupVO(List<RuleGroupVO> groupVOs);
 	
 	/**

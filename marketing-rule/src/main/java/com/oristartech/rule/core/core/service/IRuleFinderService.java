@@ -13,7 +13,7 @@ import com.oristartech.rule.vos.core.vo.RuleGroupVO;
  */
 public interface IRuleFinderService {
 	
-	public List<RuleGroupVO> assembleRuleGroup(List<RuleGroupVO> groupVOs);
+	public List<RuleGroupVO> assembleRuleGroup(List<RuleGroupVO> groupVOs) throws Exception;
 	
 	public List<RuleGroupVO> assembleRuleGroupVO(List<RuleGroupVO> groupVOs);
 	

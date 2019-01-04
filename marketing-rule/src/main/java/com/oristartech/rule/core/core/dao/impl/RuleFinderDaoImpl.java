@@ -137,6 +137,7 @@ public class RuleFinderDaoImpl extends RuleBaseDaoImpl<Rule, Integer> implements
 	 * @param groups
 	 * @return
 	 */
+	@Deprecated
 	public List<RuleGroupVO> assembleRuleGroupVO(List<RuleGroupVO> groupVOs) {
 		Map<Integer, RuleGroupVO> ruleGroupMap = new HashMap<Integer, RuleGroupVO>();
 		
@@ -151,32 +152,8 @@ public class RuleFinderDaoImpl extends RuleBaseDaoImpl<Rule, Integer> implements
 		return groupVOs;
 	}
 	
-	/**
-	 * 为了控制hibernate产生过多的sql, 自己组装vo
-	 * sql版本
-	 * @param groups
-	 * @return
-	 */
-	public List<RuleGroupVO> assembleRuleGroup(List<RuleGroupVO> groupVOs) {
-		Map<Integer, RuleGroupVO> ruleGroupMap = new HashMap<Integer, RuleGroupVO>();
-		
-		List<String> groupIds = new ArrayList<>();
-		
-		for(RuleGroupVO groupVO : groupVOs) {
-			clearGroup(groupVO);
-			if(ruleGroupMap.get(groupVO.getId()) == null) {
-				ruleGroupMap.put(groupVO.getId(), groupVO);
-			}
-			groupIds.add(String.valueOf(groupVO.getId()));
-		}
-		
-		assembleRuleGroupSection(ruleGroupMap, initCommonSection(groupIds));
-//		assembleRuleGroupSection(ruleGroupMap, initRuleInGroups(groupIds));
-		assembleRuleInGroup(ruleGroupMap, initRuleInGroups(groupIds));
-		return groupVOs;
-	}
 	
-	public List<RuleVO> initRuleInGroups(List<String> groupIds){
+	public List<Map<String,Object>> getRuleConditionInfo(List<String> groupIds) throws Exception{
 		StringBuffer sql = new StringBuffer();
 		sql.append(" SELECT r.ID AS r_id,r.RULE_GROUP_ID AS r_ruleGroupId,r.`NAME` AS r_name,r.SEQ_NUM AS r_seqNum,r.PRIORITY AS r_priority,r.REMARK AS r_remark,r.`STATUS` AS r_status,r.RULE_TYPE AS r_ruleType, ");
 		sql.append("		r.EXECUTE_MODE AS r_executeMode,r.VALID_DATE_START AS r_validDateStart,r.VALID_DATE_END AS r_validDateEnd,r.BIZ_PROPERTIES AS r_bizProperties,r.BUSINESS_CODE AS r_bizOrderCode,r.VERSION AS r_version,");
@@ -206,65 +183,10 @@ public class RuleFinderDaoImpl extends RuleBaseDaoImpl<Rule, Integer> implements
 		}
 		sql.append(" ORDER BY r.RULE_GROUP_ID, r.SEQ_NUM, rc.SEQ_NUM ");
 			
-		try {
-			List<Map<String,Object>> list = queryMapBySql(sql.toString(), null);
-			List<RuleVO> ruleVOs = new ArrayList<>();
-			for(Map<String,Object> rule:list){
-				
-				RuleVO newRuleVO = getRuleMapper().map(rule, RuleVO.class);
-				ruleVOs.add(newRuleVO);
-			}
-			
-//			组装section
-			List<RuleSectionVO> sectionVOs = new ArrayList<>();
-			for(Map<String,Object> section:list){
-				
-				RuleSectionVO newSectionVO = getRuleMapper().map(section, RuleSectionVO.class);
-				sectionVOs.add(newSectionVO);
-			}
-			List<Map<String,Object>> list2 = initRuleByAction(groupIds);
-			for(Map<String,Object> rule:list2){
-				
-				RuleVO newRuleVO = getRuleMapper().map(rule, RuleVO.class);
-				ruleVOs.add(newRuleVO);
-			}
-
-			for(Map<String,Object> section:list2){
-				
-				RuleSectionVO newSectionVO = getRuleMapper().map(section, RuleSectionVO.class);
-				sectionVOs.add(newSectionVO);
-			}
-
-			combineSectionAndAction(sectionVOs, assembleRuleAction(list2));
-//			组装section里面的condition属性
-			combineSectionAndCondition(sectionVOs, assembleRuleCondition(list));
-//			根据sectionid和rugroupid去重section
-			sectionVOs = sectionVOs.stream().collect(Collectors.collectingAndThen(
-	                Collectors.toCollection(() -> new TreeSet<>(
-	                        Comparator.comparing(o -> o.getRuleId() + o.getId()))),ArrayList::new));
-			
-			combineRuleAndSection(ruleVOs, sectionVOs);
-			ruleVOs = ruleVOs.stream().collect(Collectors.collectingAndThen(
-	                Collectors.toCollection(() -> new TreeSet<>(
-	                        Comparator.comparing(o -> o.getRuleGroupId() + o.getId()))),ArrayList::new));
-			return ruleVOs;
-		} catch (Exception e) {
-			throw new DaoRuntimeException(e.getMessage());
-		}
+		return queryMapBySql(sql.toString(), null);
 	}
 	
-	private List<RuleActionVO> assembleRuleAction(List<Map<String,Object>> list){
-		List<RuleActionVO> all = new ArrayList<>();
-//		所有的condition加入list
-		for(Map<String,Object> map : list){
-			RuleActionVO newActionVO = getRuleMapper().map(map, RuleActionVO.class);
-			all.add(newActionVO);
-		}
-		
-		return all;
-	}
-	
-	public List<Map<String,Object>> initRuleByAction(List<String> groupIds) throws Exception{
+	public List<Map<String,Object>> getRuleActionInfo(List<String> groupIds) throws Exception{
 		StringBuffer sql = new StringBuffer();
 		sql.append(" SELECT r.ID AS r_id,r.RULE_GROUP_ID AS r_ruleGroupId,r.`NAME` AS r_name,r.SEQ_NUM AS r_seqNum,r.PRIORITY AS r_priority,r.REMARK AS r_remark,r.`STATUS` AS r_status,r.RULE_TYPE AS r_ruleType, ");
 		sql.append("		r.EXECUTE_MODE AS r_executeMode,r.VALID_DATE_START AS r_validDateStart,r.VALID_DATE_END AS r_validDateEnd,r.BIZ_PROPERTIES AS r_bizProperties,r.BUSINESS_CODE AS r_bizOrderCode,r.VERSION AS r_version,");
@@ -283,7 +205,7 @@ public class RuleFinderDaoImpl extends RuleBaseDaoImpl<Rule, Integer> implements
 		return queryMapBySql(sql.toString(), null);
 	}
 	
-	public List<RuleSectionVO> initCommonSection(List<String> groupIds){
+	public List<Map<String,Object>> getGroupSectionInfo(List<String> groupIds) throws Exception{
 		StringBuffer sql = new StringBuffer();
 		sql.append(" SELECT	rs.ID AS rs_id,	rs.IS_SERIAL AS rs_isSerial,	rs.RULE_GROUP_ID AS rs_ruleGroupId,	rs.RULE_ID AS rs_ruleId, ");
 		sql.append(" 		rs.SEQ_NUM AS rs_seqNum,	rc.ID AS con_id,	rc.FIELD_GROUP_ID AS con_fieldGroupId,	rc.MODIFIER AS con_modifier,	rc.RULE_MODEL_CATEGORY_ID AS con_ruleModelCategoryId, ");
@@ -304,142 +226,12 @@ public class RuleFinderDaoImpl extends RuleBaseDaoImpl<Rule, Integer> implements
 		sql.append(" WHERE 1=1 AND rc.id IS NOT NULL ");
 		
 		if(!BlankUtil.isBlank(groupIds)){
-			String type = "'"+ groupIds.stream().collect(Collectors.joining("','")) + "'";
-			sql.append(" AND rs.RULE_GROUP_ID IN ("+type+") ");
+			String ids = "'"+ groupIds.stream().collect(Collectors.joining("','")) + "'";
+			sql.append(" AND rs.RULE_GROUP_ID IN ("+ids+") ");
 		}
 		sql.append(" ORDER BY rs.RULE_GROUP_ID, rs.SEQ_NUM, rc.SEQ_NUM ");
 			
-		try {
-			List<Map<String,Object>> list = queryMapBySql(sql.toString(), null);
-			List<RuleSectionVO> sectionVOs = new ArrayList<>();
-			for(Map<String,Object> section:list){
-				
-				RuleSectionVO newSectionVO = getRuleMapper().map(section, RuleSectionVO.class);
-				sectionVOs.add(newSectionVO);
-			}
-//			组装section里面的condition属性
-			combineSectionAndCondition(sectionVOs, assembleRuleCondition(list));
-//			根据sectionid和rugroupid去重section
-			sectionVOs = sectionVOs.stream().collect(Collectors.collectingAndThen(
-	                Collectors.toCollection(() -> new TreeSet<>(
-	                        Comparator.comparing(o -> o.getRuleGroupId() + o.getId()))),ArrayList::new));
-			
-			return sectionVOs;
-		} catch (Exception e) {
-			throw new DaoRuntimeException(e.getMessage());
-		}
-	}
-	
-	private List<RuleVO> combineRuleAndSection(List<RuleVO> rules,List<RuleSectionVO> ruleSections){
-		for(RuleSectionVO section : ruleSections){
-			for(RuleVO rule : rules){
-				if(section.getRuleId().longValue() == rule.getId().longValue()){
-					if(BlankUtil.isBlank(rule.getRuleSections())){
-						rule.setRuleSections(new ArrayList<>());
-						rule.getRuleSections().add(section);
-					}else{
-						rule.getRuleSections().add(section);
-					}
-				}
-			}
-		}
-		
-		return rules;
-	}
-	private List<RuleSectionVO> combineSectionAndAction(List<RuleSectionVO> secs,List<RuleActionVO> actions){
-		for(RuleActionVO action : actions){
-			for(RuleSectionVO sec : secs){
-				if(action.getRuleSectionId().longValue() == sec.getId().longValue()){
-					if(BlankUtil.isBlank(sec.getRuleActions())){
-						sec.setRuleActions(new ArrayList<>());
-						sec.getRuleActions().add(action);
-					}else{
-						sec.getRuleActions().add(action);
-					}
-				}
-			}
-		}
-		
-		return secs;
-	}
-	
-	private List<RuleSectionVO> combineSectionAndCondition(List<RuleSectionVO> secs,List<RuleConditionVO> cons){
-		for(RuleConditionVO con : cons){
-			for(RuleSectionVO sec : secs){
-				if(con.getRuleSectionId().longValue() == sec.getId().longValue()){
-					if(BlankUtil.isBlank(sec.getRuleConditions())){
-						sec.setRuleConditions(new ArrayList<>());
-						sec.getRuleConditions().add(con);
-					}else{
-						sec.getRuleConditions().add(con);
-					}
-				}
-			}
-		}
-		
-		return secs;
-	}
-	
-	
-	
-	private List<RuleConditionVO> assembleRuleCondition(List<Map<String,Object>> list){
-		List<RuleConditionVO> all = new ArrayList<>();
-//		所有的condition加入list
-		for(Map<String,Object> map : list){
-			RuleConditionVO newConditionVO = getRuleMapper().map(map, RuleConditionVO.class);
-			all.add(newConditionVO);
-		}
-
-		//组装好的RuleConditionElementVO放入RuleConditionVO中
-		combineConditionAndElement(all, assembleRuleConditionElement(list));
-		
-		all = all.stream().collect(Collectors.collectingAndThen(
-                Collectors.toCollection(() -> new TreeSet<>(
-                        Comparator.comparing(o -> o.getRuleSectionId() + o.getId()))),ArrayList::new));
-		
-		return all;
-//		for(RuleConditionVO vo : all){
-////		没有包含key为rulesectionid的加入map
-//			if(result.containsKey(vo.getRuleSectionId())){
-////				去重操作，包含rulesectionid,对对应的RuleCondition集合进行判断，
-////				没有相同ruleconditionid的，加入集合中，否则丢弃
-//				if(result.get(vo.getRuleSectionId()).stream().anyMatch(i -> i.getId()!=vo.getId()))
-//					result.get(vo.getRuleSectionId()).add(vo);
-//			}else{
-//				List<RuleConditionVO> vos = new ArrayList<>();
-//				vos.add(vo);
-//				result.put(vo.getRuleSectionId(), vos);
-//			}
-//		}
-//		return result;
-	}
-	
-	private List<RuleConditionVO> combineConditionAndElement(List<RuleConditionVO> cons,List<RuleConditionElementVO> conEles){
-		for(RuleConditionElementVO conEle : conEles){
-			for(RuleConditionVO con : cons){
-				if(conEle.getRuleConditionId().longValue() == con.getId().longValue()){
-					if(BlankUtil.isBlank(con.getConditionElements())){
-						con.setConditionElements(new ArrayList<>());
-						con.getConditionElements().add(conEle);
-					}else{
-						con.getConditionElements().add(conEle);
-					}
-				}
-			}
-		}
-		
-		return cons;
-	}
-	
-	private List<RuleConditionElementVO> assembleRuleConditionElement(List<Map<String,Object>> list){
-		List<RuleConditionElementVO> all = new ArrayList<>();
-		for(Map<String,Object> map : list){
-			RuleConditionElementVO newConditionEleVO = getRuleMapper().map(map, RuleConditionElementVO.class);
-			ModelFieldVO newMFvo = getRuleMapper().map(map, ModelFieldVO.class);
-			newConditionEleVO.setModelField(newMFvo);
-			all.add(newConditionEleVO);
-		}
-		return all;
+		return queryMapBySql(sql.toString(), null);
 	}
 	
 	/**
@@ -458,7 +250,7 @@ public class RuleFinderDaoImpl extends RuleBaseDaoImpl<Rule, Integer> implements
 	    	List<Rule> results = (List<Rule>)super.findByNamedParam(sb.toString(), params);
 	    	List<RuleVO> sectionVOs = convertRuleVO(results);
 	    	assembleRuleInGroup(ruleGroupMap, sectionVOs);
-//	    	initRuleSection(ruleGroupMap);
+	    	initRuleSection(ruleGroupMap);
 		}
 	}
 	
@@ -640,7 +432,7 @@ public class RuleFinderDaoImpl extends RuleBaseDaoImpl<Rule, Integer> implements
 	    	List<RuleSection> results = (List<RuleSection>)super.findByNamedParam(sb.toString(), params);
 	    	List<RuleSectionVO> sectionVOs = convertSectionVO(results);
 	    	assembleRuleGroupSection(ruleGroupMap, sectionVOs);
-//	    	initRuleConditionElements(sectionVOs);
+	    	initRuleConditionElements(sectionVOs);
 	    	
 		}
 	}

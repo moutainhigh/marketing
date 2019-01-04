@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import com.oristartech.api.exception.DaoException;
 import com.oristartech.api.exception.ServiceException;
+import com.oristartech.marketing.core.exception.ServiceRuntimeException;
 import com.oristartech.marketing.core.service.impl.RuleBaseServiceImpl;
 import com.oristartech.marketing.dao.IMarketingDao;
 import com.oristartech.marketing.dao.IMarketingLogDao;
@@ -306,11 +307,15 @@ public class MarketingServiceImpl extends RuleBaseServiceImpl implements IMarket
 			RuleGroupVO vo = getMapper().map(ruleGroup, RuleGroupVO.class);
 			vos.add(vo);
 		}
-		
-		if(vos != null && !BlankUtil.isBlank(vos)) {
-			List<RuleGroupVO> groupVos = ruleFinderService.assembleRuleGroup(vos);
-			Page<RuleGroupVO> pageVo = new Page<RuleGroupVO>(page.getStartIndex(), page.getTotalCount(), page.getPageSize(), groupVos);
-			return pageVo;
+		try{
+			if(vos != null && !BlankUtil.isBlank(vos)) {
+				List<RuleGroupVO> groupVos = ruleFinderService.assembleRuleGroup(vos);
+				Page<RuleGroupVO> pageVo = new Page<RuleGroupVO>(page.getStartIndex(), page.getTotalCount(), page.getPageSize(), groupVos);
+				return pageVo;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			throw new ServiceRuntimeException(e.getMessage());
 		}
 		return null;
 	}
