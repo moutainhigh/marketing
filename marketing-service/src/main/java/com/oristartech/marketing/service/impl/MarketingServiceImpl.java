@@ -37,7 +37,7 @@ import com.oristartech.rule.core.core.service.IRuleFinderService;
 import com.oristartech.rule.core.core.service.IRuleManagerService;
 import com.oristartech.rule.core.data.sync.model.RuleTaskDefineType;
 import com.oristartech.rule.core.data.sync.service.ITaskDataService;
-import com.oristartech.rule.core.init.dao.impl.IRuleInitDao;
+import com.oristartech.rule.core.init.dao.IRuleInitDao;
 import com.oristartech.rule.search.RuleSearchCondition;
 import com.oristartech.rule.vos.core.enums.RuleStatus;
 import com.oristartech.rule.vos.core.vo.RuleConditionElementVO;
@@ -62,8 +62,7 @@ public class MarketingServiceImpl extends RuleBaseServiceImpl implements IMarket
 	private ITaskDataService ruleTaskDataService;
 	@Autowired
 	private IMarketingActivityBusinessManagenMentService marketingActivityBusinessManagenMentService;
-	@Autowired
-	IRuleFinderService ruleFinderService;
+	
 	@Autowired
 	IPropertyService propertyService;
 	/**
@@ -301,26 +300,6 @@ public class MarketingServiceImpl extends RuleBaseServiceImpl implements IMarket
 		}
 		
 		return false;
-	}
-	
-	public Page<RuleGroupVO> findEngineExeRuleVOs(RuleSearchCondition searchCondition) {
-		Page page = ruleInitDao.findEngineExeRuleVOs(searchCondition);
-		List<RuleGroupVO> vos = new ArrayList<RuleGroupVO>();
-		for(Object ruleGroup : page.getResult()){
-			RuleGroupVO vo = getMapper().map(ruleGroup, RuleGroupVO.class);
-			vos.add(vo);
-		}
-		try{
-			if(vos != null && !BlankUtil.isBlank(vos)) {
-				List<RuleGroupVO> groupVos = ruleFinderService.assembleRuleGroup(vos);
-				Page<RuleGroupVO> pageVo = new Page<RuleGroupVO>(page.getStartIndex(), page.getTotalCount(), page.getPageSize(), groupVos);
-				return pageVo;
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-			throw new ServiceRuntimeException(e.getMessage());
-		}
-		return null;
 	}
 	
 	private Map<String, String> getContainBusinessCode(RuleGroupVO groupVO) {

@@ -54,12 +54,6 @@ public interface IMarketingService {
 	public String getActivityCode(Long id) throws ServiceException;
 	
 	/**
-	 * 查询可以使用中的规则
-	 * @param searchCondition
-	 * @return
-	 */
-	public Page<RuleGroupVO> findEngineExeRuleVOs(RuleSearchCondition searchCondition);
-	/**
 	 * 根据ID查询营销活动信息
 	 * 
 	 * @param id

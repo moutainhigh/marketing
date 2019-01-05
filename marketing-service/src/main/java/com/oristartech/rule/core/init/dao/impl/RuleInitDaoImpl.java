@@ -13,6 +13,7 @@ import com.oristartech.rule.common.util.BlankUtil;
 import com.oristartech.rule.common.util.Page;
 import com.oristartech.rule.core.core.dao.IRuleTypeDao;
 import com.oristartech.rule.core.core.model.RuleGroup;
+import com.oristartech.rule.core.init.dao.IRuleInitDao;
 import com.oristartech.rule.search.RuleSearchCondition;
 import com.oristartech.rule.vos.core.enums.RuleRunMode;
 import com.oristartech.rule.vos.core.enums.RuleStatus;

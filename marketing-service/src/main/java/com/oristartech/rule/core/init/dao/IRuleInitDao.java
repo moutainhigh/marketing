@@ -1,4 +1,4 @@
-package com.oristartech.rule.core.init.dao.impl;
+package com.oristartech.rule.core.init.dao;
 
 import com.oristartech.rule.common.util.Page;
 import com.oristartech.rule.search.RuleSearchCondition;
