@@ -12,13 +12,6 @@ import com.oristartech.rule.vos.core.vo.RuleGroupVO;
 
 public interface IMarketingDao extends IMarketingBaseDao<MarketingActivity, Long> {
 	
-	/**
-	 * 根据租户ID查询真正执行中的规则，初始化规则用
-	 * @param searchCondition
-	 * @return
-	 */
-	public Page<RuleGroupVO> findEngineExeRuleVOs(RuleSearchCondition searchCondition);
-
 	public Page pageListMarketingActivityByAccountAuth(MarketingSearchVO searchVo, 
 			int pageNo, int pageSize) throws DaoException;
 	

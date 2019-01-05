@@ -105,7 +105,7 @@
 		<class-a>java.util.Map</class-a>
 		<class-b>com.oristartech.rule.vos.core.vo.RuleGroupVO</class-b>
 		<field>
-			<a key="mac_tenantId">this</a>
+			<a key="rg_tenantId">this</a>
 			<b>tenantId</b>
 		</field>
 		<field>
@@ -258,6 +258,10 @@
         <field>
             <a key="conEle_modelFieldId">this</a>
             <b>modelFieldId</b>
+        </field>
+        <field>
+            <a key="conEle_modelFieldName">this</a>
+            <b>modelFieldName</b>
         </field>
         <field>
             <a key="conEle_opId">this</a>

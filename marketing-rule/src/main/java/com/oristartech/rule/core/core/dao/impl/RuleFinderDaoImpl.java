@@ -161,7 +161,7 @@ public class RuleFinderDaoImpl extends RuleBaseDaoImpl<Rule, Integer> implements
 		sql.append(" 		rs.SEQ_NUM AS rs_seqNum,	rc.ID AS con_id,	rc.FIELD_GROUP_ID AS con_fieldGroupId,	rc.MODIFIER AS con_modifier,	rc.RULE_MODEL_CATEGORY_ID AS con_ruleModelCategoryId, ");
 		sql.append(" 		rc.RULE_SECTION_ID AS con_ruleSectionId,	rc.SEQ_NUM AS con_seqNum,	mc.ID AS mc_id,	mc.`NAME` AS mc_name,	mc.PARENT_NAME AS mc_parentName, rce.ID AS conEle_id,	rce.IS_AND AS conEle_isAnd,	rce.LEFT_BRACKET_NUM AS conEle_leftBracketNum, ");
 		sql.append(" 		rce.MODEL_FIELD_ID AS conEle_modelFieldId,	rce.OPERAND AS conEle_operand,	rce.OPERAND_LABEL AS conEle_operandLabel,	rce.OPERATOR_ID AS conEle_opId,	rce.RIGHT_BRACKET_NUM AS conEle_rightBracketNum, ");
-		sql.append(" 		rce.RULE_CONDITION_ID AS conEle_ruleConditionId,	rce.SEQ_NUM AS conEle_seqNum,	mf.ID AS mf_id,	mf.CN_NAME AS mf_cnName,mf.REMARK AS mf_remark, ");
+		sql.append(" 		rce.RULE_CONDITION_ID AS conEle_ruleConditionId,	rce.SEQ_NUM AS conEle_seqNum, mf.`NAME` AS conEle_modelFieldName,	mf.ID AS mf_id,	mf.CN_NAME AS mf_cnName,mf.REMARK AS mf_remark, ");
 		sql.append("		op.CN_NAME AS op_opCnName,	op.OP_CODE AS op_opCode,	op.CONDITION_MODIFIER AS op_opConditionModifier,	op.UNIQUE_NAME AS op_opUniqueName,	op.OP_NUM AS op_opNum, ");
 		sql.append("		op.DEFAULT_OPERAND AS op_opDefaultOperand,	op.IS_PLAIN_OP AS op_isPlainOp,	op.IS_CUSTOM AS op_isCustomOpCode,	op.IDENTITY_TAG AS op_opIdentityTag,	op.IS_NOT_NULL_OP AS op_isNotNullOp, ");
 		sql.append(" 		mf.DEFAULT_VALUE AS mf_defaultValue,	mf.EXTERN_PAGE_METHOD AS mf_externPageMethod,	mf.SEARCH_SERVICE_NAME AS mf_searchServiceName,	mf.MODEL_SERVICE_NAME AS mf_modelServiceName, ");
@@ -211,18 +211,19 @@ public class RuleFinderDaoImpl extends RuleBaseDaoImpl<Rule, Integer> implements
 		sql.append(" 		rs.SEQ_NUM AS rs_seqNum,	rc.ID AS con_id,	rc.FIELD_GROUP_ID AS con_fieldGroupId,	rc.MODIFIER AS con_modifier,	rc.RULE_MODEL_CATEGORY_ID AS con_ruleModelCategoryId, ");
 		sql.append(" 		rc.RULE_SECTION_ID AS con_ruleSectionId,	rc.SEQ_NUM AS con_seqNum,	mc.ID AS mc_id,	mc.`NAME` AS mc_name,	mc.PARENT_NAME AS mc_parentName, rce.ID AS conEle_id,	rce.IS_AND AS conEle_isAnd,	rce.LEFT_BRACKET_NUM AS conEle_leftBracketNum, ");
 		sql.append(" 		rce.MODEL_FIELD_ID AS conEle_modelFieldId,	rce.OPERAND AS conEle_operand,	rce.OPERAND_LABEL AS conEle_operandLabel,	rce.OPERATOR_ID AS conEle_opId,	rce.RIGHT_BRACKET_NUM AS conEle_rightBracketNum, ");
-		sql.append(" 		rce.RULE_CONDITION_ID AS conEle_ruleConditionId,	rce.SEQ_NUM AS conEle_seqNum,	mf.ID AS mf_id,	mf.CN_NAME AS mf_cnName,mf.REMARK AS mf_remark, ");
+		sql.append(" 		rce.RULE_CONDITION_ID AS conEle_ruleConditionId,	rce.SEQ_NUM AS conEle_seqNum, mf.`NAME` AS conEle_modelFieldName, mf.ID AS mf_id,	mf.CN_NAME AS mf_cnName,mf.REMARK AS mf_remark, ");
 		sql.append("		op.CN_NAME AS op_opCnName,	op.OP_CODE AS op_opCode,	op.CONDITION_MODIFIER AS op_opConditionModifier,	op.UNIQUE_NAME AS op_opUniqueName,	op.OP_NUM AS op_opNum, ");
 		sql.append("		op.DEFAULT_OPERAND AS op_opDefaultOperand,	op.IS_PLAIN_OP AS op_isPlainOp,	op.IS_CUSTOM AS op_isCustomOpCode,	op.IDENTITY_TAG AS op_opIdentityTag,	op.IS_NOT_NULL_OP AS op_isNotNullOp, ");
 		sql.append(" 		mf.DEFAULT_VALUE AS mf_defaultValue,	mf.EXTERN_PAGE_METHOD AS mf_externPageMethod,	mf.SEARCH_SERVICE_NAME AS mf_searchServiceName,	mf.MODEL_SERVICE_NAME AS mf_modelServiceName, ");
 		sql.append(" 		mf.IS_DELETE AS mf_isDelete,	mf.IS_LOAD_AUTO AS mf_isLoadAuto,	mf.IS_EXTERN AS mf_isExtern,	mf.LABEL_FIELD_NAME AS mf_labelFieldName,	mf.`NAME` AS mf_name, ");
-		sql.append(" 		mf.TYPE AS mf_type,	mf.BUSINESS_SYSTEM_ID AS mf_businessSystemId,	mf.MODEL_CATEGORY_ID AS mf_modelCategoryId,	mf.LOAD_SERVICE_NAME AS mf_loadServiceName ");
+		sql.append(" 		mf.TYPE AS mf_type,	mf.BUSINESS_SYSTEM_ID AS mf_businessSystemId,	mf.MODEL_CATEGORY_ID AS mf_modelCategoryId,	mf.LOAD_SERVICE_NAME AS mf_loadServiceName ,mc1.`NAME` AS mf_modelCategoryName ");
 		sql.append(" FROM	rule_core_rule_section rs ");
 		sql.append(" LEFT JOIN rule_core_rule_condition rc ON rc.RULE_SECTION_ID = rs.ID ");
 		sql.append(" LEFT JOIN rule_base_model_category mc ON mc.ID = rc.RULE_MODEL_CATEGORY_ID ");
 		sql.append(" LEFT JOIN RULE_CORE_RULE_CONDITION_ELEMENT rce ON rce.RULE_CONDITION_ID = rc.ID ");
 		sql.append(" LEFT JOIN rule_base_operator op ON op.ID = rce.OPERATOR_ID");
 		sql.append(" LEFT JOIN rule_base_model_field mf ON mf.ID = rce.MODEL_FIELD_ID");
+		sql.append(" LEFT JOIN rule_base_model_category mc1 ON mc1.ID = mf.MODEL_CATEGORY_ID");
 		sql.append(" WHERE 1=1 AND rc.id IS NOT NULL ");
 		
 		if(!BlankUtil.isBlank(groupIds)){

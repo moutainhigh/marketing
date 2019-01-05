@@ -37,6 +37,7 @@ import com.oristartech.rule.core.core.service.IRuleFinderService;
 import com.oristartech.rule.core.core.service.IRuleManagerService;
 import com.oristartech.rule.core.data.sync.model.RuleTaskDefineType;
 import com.oristartech.rule.core.data.sync.service.ITaskDataService;
+import com.oristartech.rule.core.init.dao.impl.IRuleInitDao;
 import com.oristartech.rule.search.RuleSearchCondition;
 import com.oristartech.rule.vos.core.enums.RuleStatus;
 import com.oristartech.rule.vos.core.vo.RuleConditionElementVO;
@@ -49,6 +50,8 @@ public class MarketingServiceImpl extends RuleBaseServiceImpl implements IMarket
 
 	private static final Logger log = Logger.getLogger(MarketingServiceImpl.class);
 	
+	@Autowired
+	IRuleInitDao ruleInitDao;
 	@Autowired
 	private IMarketingLogDao marketingLogDao;
 	@Autowired
@@ -301,7 +304,7 @@ public class MarketingServiceImpl extends RuleBaseServiceImpl implements IMarket
 	}
 	
 	public Page<RuleGroupVO> findEngineExeRuleVOs(RuleSearchCondition searchCondition) {
-		Page page = marketingDao.findEngineExeRuleVOs(searchCondition);
+		Page page = ruleInitDao.findEngineExeRuleVOs(searchCondition);
 		List<RuleGroupVO> vos = new ArrayList<RuleGroupVO>();
 		for(Object ruleGroup : page.getResult()){
 			RuleGroupVO vo = getMapper().map(ruleGroup, RuleGroupVO.class);

@@ -181,7 +181,7 @@ public class RuleDroolsManagerServiceImpl extends AbstractDroolsManagerServiceIm
 				try {
 //					解析drl文件到规则引擎内存中 Knowledgebase 规则文件解析出来的drl文件中的Java代码 invoke对应规则的方法对规则进行分析
 					String ruleContent = templateContentService.toRuleContent(ruleVO, isTest);
-					System.out.println(ruleContent);
+//					System.out.println(ruleContent);
 					long start = System.currentTimeMillis();
 					pkNames.addAll(getRuleKnowledgeWrapper().addRules(String.valueOf(groupVO.getTenantId()),knowledgeMapKey, removeRulesPackages, ruleContent));
 					

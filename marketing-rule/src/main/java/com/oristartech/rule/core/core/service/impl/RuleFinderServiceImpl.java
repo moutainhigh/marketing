@@ -133,7 +133,7 @@ public class RuleFinderServiceImpl extends RuleBaseServiceImpl implements IRuleF
 //		根据sectionid和rugroupid去重section
 		sectionVOs = sectionVOs.stream().collect(Collectors.collectingAndThen(
                 Collectors.toCollection(() -> new TreeSet<>(
-                        Comparator.comparing(o -> o.getRuleId() + o.getId()))),ArrayList::new));
+                        Comparator.comparing(o -> o.getRuleId() + "," + o.getId()))),ArrayList::new));
 //		组装section里面的action属性
 		combineSectionAndAction(sectionVOs, assembleRuleAction(actionList));
 //		组装section里面的condition属性
@@ -142,7 +142,7 @@ public class RuleFinderServiceImpl extends RuleBaseServiceImpl implements IRuleF
 //		根据ruleid和rugroupid去重rule
 		ruleVOs = ruleVOs.stream().collect(Collectors.collectingAndThen(
                 Collectors.toCollection(() -> new TreeSet<>(
-                        Comparator.comparing(o -> o.getRuleGroupId() + o.getId()))),ArrayList::new));
+                        Comparator.comparing(o -> o.getRuleGroupId() + "," + o.getId()))),ArrayList::new));
 		combineRuleAndSection(ruleVOs, sectionVOs);
 		
 		return ruleVOs;
@@ -220,7 +220,7 @@ public class RuleFinderServiceImpl extends RuleBaseServiceImpl implements IRuleF
 //			根据sectionid和rugroupid去重section
 		sectionVOs = sectionVOs.stream().collect(Collectors.collectingAndThen(
                 Collectors.toCollection(() -> new TreeSet<>(
-                        Comparator.comparing(o -> o.getRuleGroupId() + o.getId()))),ArrayList::new));
+                        Comparator.comparing(o -> o.getRuleGroupId() + "," + o.getId()))),ArrayList::new));
 		
 		return sectionVOs;
 	}

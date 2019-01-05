@@ -74,7 +74,7 @@ public class TaskDataServiceImpl extends RuleBaseServiceImpl  implements ITaskDa
 				taskData.setCreateTime(new Date());
 				taskData.setTaskDefine(taskDefine);
 				taskData.setStatus(taskStatus);
-				taskData.setTaskContent(taskContent);
+//				taskData.setTaskContent(taskContent);
 				ruleTaskDataDao.saveOrUpdate(taskData);
 			}
 		}

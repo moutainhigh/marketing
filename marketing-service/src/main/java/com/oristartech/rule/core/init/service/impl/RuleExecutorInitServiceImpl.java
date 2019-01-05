@@ -1,5 +1,7 @@
 package com.oristartech.rule.core.init.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CyclicBarrier;
 
 import org.slf4j.Logger;
@@ -7,12 +9,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.oristartech.marketing.core.exception.ServiceRuntimeException;
 import com.oristartech.marketing.core.thread.SynchedExitOnlyThread;
 import com.oristartech.marketing.service.IMarketingService;
 import com.oristartech.rule.common.util.BlankUtil;
 import com.oristartech.rule.common.util.Page;
 import com.oristartech.rule.config.RuleProperties;
 import com.oristartech.rule.core.executor.IRuleLoaderService;
+import com.oristartech.rule.core.init.dao.impl.IRuleInitDao;
 import com.oristartech.rule.core.init.service.IRuleExecutorInitService;
 import com.oristartech.rule.search.RuleSearchCondition;
 import com.oristartech.rule.vos.core.vo.RuleGroupVO;
@@ -28,6 +32,8 @@ public class RuleExecutorInitServiceImpl implements IRuleExecutorInitService {
 	private RuleProperties ruleSystemConfigProps;
 	@Autowired
 	private IRuleLoaderService ruleLoaderService;
+	@Autowired
+	IRuleInitDao ruleInitDao;
 	
 	private final int DEFALULT_LOAD_RULE_THREAD_COUNT = 1;
 	private final String INIT_LOAD_RULE_THREAD_COUNT_PROP = "INIT_LOAD_RULE_THREAD_COUNT";
