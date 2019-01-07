@@ -19,7 +19,7 @@ public class IssueTaskDataVO implements Serializable {
 	/**
 	 * 下发任务内容
 	 */
-	private String taskContent;
+	private Long taskContent;
 	
 	/**
 	 * 加密后任务内容
@@ -29,7 +29,7 @@ public class IssueTaskDataVO implements Serializable {
 	/**
 	 * 任务执行serviceBean
 	 */
-	private String serviceBeanName;
+	private Long taskDefine;
 	
 	/**
 	 * 任务执行Method
@@ -39,7 +39,7 @@ public class IssueTaskDataVO implements Serializable {
 	/**
 	 * 是否保存数据库
 	 */
-	private Boolean isSave;
+	private Long destNote;
 
 	public Long getTaskId() {
 		return taskId;
@@ -49,20 +49,20 @@ public class IssueTaskDataVO implements Serializable {
 		this.taskId = taskId;
 	}
 
-	public String getTaskContent() {
+	public Long getTaskContent() {
 		return taskContent;
 	}
 
-	public void setTaskContent(String taskContent) {
+	public void setTaskContent(Long taskContent) {
 		this.taskContent = taskContent;
 	}
 
-	public String getServiceBeanName() {
-		return serviceBeanName;
+	public Long getTaskDefine() {
+		return taskDefine;
 	}
 
-	public void setServiceBeanName(String serviceBeanName) {
-		this.serviceBeanName = serviceBeanName;
+	public void setTaskDefine(Long taskDefine) {
+		this.taskDefine = taskDefine;
 	}
 
 	public String getServiceMethod() {
@@ -73,12 +73,12 @@ public class IssueTaskDataVO implements Serializable {
 		this.serviceMethod = serviceMethod;
 	}
 
-	public Boolean getIsSave() {
-		return isSave;
+	public Long getDestNote() {
+		return destNote;
 	}
 
-	public void setIsSave(Boolean isSave) {
-		this.isSave = isSave;
+	public void setDestNote(Long destNote) {
+		this.destNote = destNote;
 	}
 
 	public String getMd5TaskContent() {

@@ -18,7 +18,14 @@ public class RuleProperties {
 	public String initLoad;
 	public String isJmx;
 	public String clientTaskNum;
+	public String initThread;
 	
+	public String getInitThread() {
+		return initThread;
+	}
+	public void setInitThread(String initThread) {
+		this.initThread = initThread;
+	}
 	public String getClientip() {
 		return clientip;
 	}

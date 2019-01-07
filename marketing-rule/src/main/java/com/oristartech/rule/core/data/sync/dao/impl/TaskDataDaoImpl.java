@@ -25,7 +25,7 @@ public class TaskDataDaoImpl extends RuleBaseDaoImpl<TaskData, Long> implements 
 	 * @return
 	 */
 	public TaskData getFirstTaskDataByNoteId(Long noteId){
-		String hql = "from TaskData td where td.destNote.id = ? and td.status = ?";
+		String hql = "from TaskData td where td.destNote = ? and td.status = ?";
 		return (TaskData)this.uniqueResult(hql, new Object[]{noteId,TaskStatus.CREATE});
 	}
 	
@@ -46,7 +46,7 @@ public class TaskDataDaoImpl extends RuleBaseDaoImpl<TaskData, Long> implements 
 	 * @return
 	 */
 	public List<TaskData> getTaskDatasByNoteId(Long noteId,int taskNum){
-		String hql = "from TaskData td where td.destNote.id = ? and td.status = ?";
+		String hql = "from TaskData td where td.destNote = ? and td.status = ?";
 		Page<TaskData> page = searchPagedQuery(hql, 0, taskNum, new Object[]{ noteId,  TaskStatus.CREATE});
 		if(page != null) {
 			return page.getResult();

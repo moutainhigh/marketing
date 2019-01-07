@@ -50,29 +50,6 @@ public class RuleSystemWebServiceInvokerImpl implements IRuleSystemWebServiceInv
 	
 	private static final Logger log = LoggerFactory.getLogger(RuleSystemWebServiceInvokerImpl.class);
 	
-	/**
-	 * @param ruleSystemServiceUrlDao the ruleSystemServiceUrlDao to set
-	 */
-	public void setRuleSystemServiceUrlDao(ISystemServiceUrlDao ruleSystemServiceUrlDao) {
-		this.ruleSystemServiceUrlDao = ruleSystemServiceUrlDao;
-	}
-
-	public void setRuleSystemConfigService(ISystemConfigService ruleSystemConfigService) {
-    	this.ruleSystemConfigService = ruleSystemConfigService;
-    }
-
-	public ISystemWebServiceDao getRuleSystemWebServiceDao() {
-    	return ruleSystemWebServiceDao;
-    }
-
-	public void setRuleApplicationContextHelper(ApplicationContextHelper ruleApplicationContextHelper) {
-    	this.ruleApplicationContextHelper = ruleApplicationContextHelper;
-    }
-
-	public void setRuleSystemWebServiceDao(ISystemWebServiceDao ruleSystemWebServiceDao) {
-    	this.ruleSystemWebServiceDao = ruleSystemWebServiceDao;
-    }
-
 	public String invodeService(String serviceName, Map<String, Object> params) {
 		if(!BlankUtil.isBlank(serviceName)) {
 			SystemWebService ws = ruleSystemWebServiceDao.getByName(serviceName);

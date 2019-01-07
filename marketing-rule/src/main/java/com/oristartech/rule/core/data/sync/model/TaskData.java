@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,9 +30,8 @@ public class TaskData {
 	/**
 	 * 目标节点
 	 */
-	@ManyToOne    
-	@JoinColumn(name="DEST_NOTE_ID", nullable=false)
-	private TaskNote destNote;
+	@Column(name="DEST_NOTE_ID", nullable=false)
+	private Long destNote;
 	
 	/**
 	 * 创建时间
@@ -53,9 +50,8 @@ public class TaskData {
 	/**
 	 * 任务类型
 	 */
-	@ManyToOne
-	@JoinColumn(name="TASK_DEFINE_ID", nullable=false)
-	private TaskDefine taskDefine;
+	@Column(name="TASK_DEFINE_ID", nullable=false)
+	private Long taskDefine;
 	
 	/**
 	 * 任务状态
@@ -69,9 +65,8 @@ public class TaskData {
 	/**
 	 * 任务内容
 	 */
-	@ManyToOne
-	@JoinColumn(name="TASK_CONTENT_ID", nullable=false)
-	private TaskContent taskContent;
+	@Column(name="TASK_CONTENT_ID", nullable=false)
+	private Long taskContent;
 
 	public Long getId() {
 		return id;
@@ -79,14 +74,6 @@ public class TaskData {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public TaskNote getDestNote() {
-		return destNote;
-	}
-
-	public void setDestNote(TaskNote destNote) {
-		this.destNote = destNote;
 	}
 
 	public Date getCreateTime() {
@@ -105,11 +92,19 @@ public class TaskData {
 		this.endTime = endTime;
 	}
 
-	public TaskDefine getTaskDefine() {
+	public Long getDestNote() {
+		return destNote;
+	}
+
+	public void setDestNote(Long destNote) {
+		this.destNote = destNote;
+	}
+
+	public Long getTaskDefine() {
 		return taskDefine;
 	}
 
-	public void setTaskDefine(TaskDefine taskDefine) {
+	public void setTaskDefine(Long taskDefine) {
 		this.taskDefine = taskDefine;
 	}
 
@@ -129,15 +124,12 @@ public class TaskData {
 		this.remark = remark;
 	}
 
-	public TaskContent getTaskContent() {
+	public Long getTaskContent() {
 		return taskContent;
 	}
 
-	public void setTaskContent(TaskContent taskContent) {
+	public void setTaskContent(Long taskContent) {
 		this.taskContent = taskContent;
 	}
-	
-	
-	
 
 }

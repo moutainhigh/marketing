@@ -3,6 +3,7 @@ package com.oristartech.marketing.components.config;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
+import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +79,7 @@ public class MQConsumerConfiguration {
         /**
          * 设置消费模型，集群还是广播，默认为集群
          */
-        //consumer.setMessageModel(MessageModel.CLUSTERING);
+        consumer.setMessageModel(MessageModel.BROADCASTING);
         /**
          * 设置一次消费消息的条数，默认为1条
          */

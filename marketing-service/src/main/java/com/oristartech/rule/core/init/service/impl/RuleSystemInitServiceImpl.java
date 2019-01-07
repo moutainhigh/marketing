@@ -34,8 +34,6 @@ public class RuleSystemInitServiceImpl implements IRuleSystemInitService {
 	private RuleProperties ruleSystemConfigProps;
 	
 	private static String INIT_LOAD_VALUE = "1";
-	private final int DEFALULT_LOAD_RULE_THREAD_COUNT = 1;
-	private final String INIT_LOAD_RULE_THREAD_COUNT_PROP = "INIT_LOAD_RULE_THREAD_COUNT";
 	private final String LOAD_RULE_THREAD_NAME = "initLoadRuleThreadName";
 	private final String THREAD_NAME_SPLITER = "-";
 	
@@ -47,7 +45,7 @@ public class RuleSystemInitServiceImpl implements IRuleSystemInitService {
 	 * 初始化系统
 	 */
 	public void init() {
-		initExecutor();
+//		initExecutor();
 		initRegisterThread();
 	}
 	
@@ -68,15 +66,15 @@ public class RuleSystemInitServiceImpl implements IRuleSystemInitService {
 	 * @return
 	 */
 	private int getLoadRuleThreadCount() {
-//		String threadCountStr = ruleSystemConfigProps.getProperty(INIT_LOAD_RULE_THREAD_COUNT_PROP);
-		int threadCount = DEFALULT_LOAD_RULE_THREAD_COUNT;
-//		if(!BlankUtil.isBlank(threadCountStr)) {
-//			try {
-//				threadCount = Integer.parseInt(threadCountStr);
-//			} catch(Exception e) {
-//				log.error("无法转换加载规则线程数，使用默认线程数" + threadCount);
-//			}
-//		}
+		String threadCountStr = ruleSystemConfigProps.getInitThread();
+		int threadCount = 1;
+		if(!BlankUtil.isBlank(threadCountStr)) {
+			try {
+				threadCount = Integer.parseInt(threadCountStr);
+			} catch(Exception e) {
+				log.error("无法转换加载规则线程数，使用默认线程数" + threadCount);
+			}
+		}
 		return threadCount;
 	}
 	

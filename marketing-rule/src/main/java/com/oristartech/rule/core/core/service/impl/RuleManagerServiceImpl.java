@@ -25,6 +25,7 @@ import com.oristartech.rule.core.core.service.IRuleGroupSaverService;
 import com.oristartech.rule.core.core.service.IRuleGroupService;
 import com.oristartech.rule.core.core.service.IRuleManagerService;
 import com.oristartech.rule.core.core.service.IRuleTestService;
+import com.oristartech.rule.core.executor.IRuleLoaderService;
 import com.oristartech.rule.vos.core.enums.RuleStatus;
 import com.oristartech.rule.vos.core.vo.RuleGroupVO;
 import com.oristartech.rule.vos.core.vo.RuleSectionVO;
@@ -52,9 +53,53 @@ public class RuleManagerServiceImpl extends RuleBaseServiceImpl implements IRule
 	private IRuleGroupSaverService ruleGroupSaverService;
 	@Autowired
 	private IRuleTestService ruleTestService;
+	@Autowired
+	private IRuleLoaderService ruleLoaderService;
 	
 	public RuleGroupVO getRuleGroupById(Integer id) {
 	    return getRuleGroupNoInitExternal(id);
+	}
+	
+	/**
+	 * 客户端启用规则
+	 * @param vo
+	 */
+	public void startRule(Integer groupId,Integer tenantId){
+		if(groupId != null){
+			log.info("------启动刚下发的规则------group id=" + groupId);
+			RuleGroupVO groupVo = getRuleGroupById(groupId);
+			groupVo.setTenantId(tenantId);
+//				if(vo.getIsSave()){
+//					boolean exist = existRuleGroup(groupId);
+//					log.info("------保存新下发规则。------");
+//					if(!exist){
+//						saveRuleGroup(groupVo,null);
+//					}else{
+//						updateRuleGroupStatus(groupVo.getId(), RuleStatus.RUNNING);
+//					}
+//				}
+			ruleLoaderService.loadRuleGroup(groupVo);
+		}
+	}
+	
+	/**
+	 * 客户端停用规则
+	 * @param vo
+	 */
+	public void endRuleForMemory(Integer groupId,Integer tenantId){
+		if(groupId != null){
+//			if(!BlankUtil.isBlank(vo.getTaskContent())){
+			RuleGroupVO groupVo = getRuleGroupById(groupId);
+			groupVo.setTenantId(tenantId);
+			log.info("------停用下发的规则------group id=" + groupVo.getId() );
+//				if(vo.getIsSave()){
+//					boolean exist = existRuleGroup(groupVo.getId());
+//					if(exist){
+//						updateRuleGroupStatus(groupVo.getId(), RuleStatus.STOP);
+//					}
+//				}
+			ruleLoaderService.removeRuleGroup(groupVo);
+		}
 	}
 	
 	/**

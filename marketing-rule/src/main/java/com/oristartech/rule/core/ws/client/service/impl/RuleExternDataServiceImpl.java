@@ -27,13 +27,6 @@ public class RuleExternDataServiceImpl implements IRuleExternDataService {
 	@Autowired
 	private IRuleSystemWebServiceInvoker ruleSystemWebServiceInvoker;
 	
-	public void setRuleSystemWebServiceInvoker(IRuleSystemWebServiceInvoker ruleSystemWebServiceInvoker) {
-    	this.ruleSystemWebServiceInvoker = ruleSystemWebServiceInvoker;
-    }
-	public void setRuleModelFieldDao(IModelFieldDao ruleModelFieldDao) {
-    	this.ruleModelFieldDao = ruleModelFieldDao;
-    }
-
 	public String searchExtDataByFieldId(Integer id, Map<String, Object> params) {
 		if(id != null) {
 			ModelField field = ruleModelFieldDao.get(id);

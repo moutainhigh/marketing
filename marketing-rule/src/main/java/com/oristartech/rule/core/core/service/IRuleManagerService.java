@@ -13,6 +13,18 @@ import com.oristartech.rule.vos.core.vo.RuleVO;
  */
 public interface IRuleManagerService {
 	
+	/**
+	 * 客户端启用规则
+	 * @param vo
+	 */
+	public void startRule(Integer groupId,Integer tenantId);
+
+	/**
+	 * 客户端停用规则
+	 * @param vo
+	 */
+	public void endRuleForMemory(Integer groupId,Integer tenantId);
+	
 //	/**
 //	 * 保存规则
 //	 * @param ruleVO

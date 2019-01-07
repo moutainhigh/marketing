@@ -271,20 +271,16 @@
             <b>taskId</b>
         </field>
         <field>
-            <a>taskContent.content</a>
+            <a>taskContent</a>
             <b>taskContent</b>
         </field>
         <field>
-            <a>taskDefine.serviceBeanName</a>
-            <b>serviceBeanName</b>
-        </field>
-         <field>
-            <a>taskDefine.serviceMethod</a>
-            <b>serviceMethod</b>
+            <a>taskDefine</a>
+            <b>taskDefine</b>
         </field>
         <field>
-            <a>destNote.isSave</a>
-            <b>isSave</b>
+            <a>destNote</a>
+            <b>destNote</b>
         </field>	
     </mapping>
 	

@@ -70,9 +70,9 @@ public class TaskDataServiceImpl extends RuleBaseServiceImpl  implements ITaskDa
 		if(noteList.size()>0){
 			for(TaskNote taskNote : noteList){
 				TaskData taskData = new TaskData();
-				taskData.setDestNote(taskNote);
+//				taskData.setDestNote(taskNote);
 				taskData.setCreateTime(new Date());
-				taskData.setTaskDefine(taskDefine);
+//				taskData.setTaskDefine(taskDefine);
 				taskData.setStatus(taskStatus);
 //				taskData.setTaskContent(taskContent);
 				ruleTaskDataDao.saveOrUpdate(taskData);
@@ -106,7 +106,7 @@ public class TaskDataServiceImpl extends RuleBaseServiceImpl  implements ITaskDa
 				for(TaskData taskData : list){
 					IssueTaskDataVO vo =  this.getMapper().map(taskData, IssueTaskDataVO.class);
 					if(!BlankUtil.isBlank(vo.getTaskContent())){
-						vo.setMd5TaskContent(DigestUtils.md5Hex(vo.getTaskContent()));
+//						vo.setMd5TaskContent(DigestUtils.md5Hex(vo.getTaskContent()));
 					}
 					results.add(vo);
 				}
