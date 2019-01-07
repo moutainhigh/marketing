@@ -17,7 +17,7 @@ public class RuleStartupConfig implements CommandLineRunner{
     private DefaultMQProducer defaultMQProducer;
 	@Autowired
 	IMarketingService marketingService;
-	@Autowired
+	@Autowired 
 	IRuleSystemInitService ruleSystemInitService;
 	
 	public void run(String... args) throws Exception {
